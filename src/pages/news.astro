@@ -28,16 +28,14 @@ const uniqueNewsTypes = [...new Set(allNewsTypes)];
     <Gradient gradient_class="news_2" />
     <Gradient gradient_class="news_3" />
     <h1>News</h1>
-    <h3>
-      Dive into the stories, people, and trends shaping this year’s festival.
-    </h3>
+    <h3>Dive into the stories, people, and trends shaping this year’s festival.</h3>
     <p>
-      Explore interviews with speakers, deep dives into industry trends,
-      practical festival tips, spotlights on standout events, and insights from
-      across the creative landscape — all in one place.
+      Explore interviews with speakers, deep dives into industry trends, practical festival tips,
+      spotlights on standout events, and insights from across the creative landscape — all in one
+      place.
     </p>
     <Dropdown selectName="newsType" selectId="newsTypeSelector">
-      <option value="allNewsTypes">All Types</option>
+      <option value="allNewsTypes">All Categories</option>
       {
         uniqueNewsTypes.map((newsType) => {
           return <option value={newsType}>{newsType}</option>;

@@ -56,8 +56,13 @@ const { myData } = Astro.props;
         <p>Author: {myData.author}</p>
       </div>
       <div class="news_topics_flex">
-        <CardCategory className="newsNoMargin" text={myData.topic} />
-        <CardCategory className="newsNoMargin" text={myData.type} />
+        <CardCategory className="newsSW_cat" text={myData.type} />
+
+        {
+          myData.topic.map((newsTopic) => {
+            return <CardCategory className="newsSW" text={newsTopic} />;
+          })
+        }
       </div>
       <div class="news_txt">
         <h2>{myData.title}</h2>
@@ -259,10 +264,8 @@ const { myData } = Astro.props;
       let currentIndex = 0;
 
       function showImage(index) {
-        console.log(index);
         images.forEach((img, i) => {
           if (i === index) {
-            console.log(img);
             img.classList.remove("hidden");
             img.classList.add("show");
           } else {
