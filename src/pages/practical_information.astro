@@ -149,21 +149,39 @@ import "../style/styles.css";
 </style>
 
 <script>
-  const tabs = document.querySelectorAll(".tabs > div[id]");
-  const allInfos = document.querySelectorAll(".practical_info");
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tabs > div[id]");
+    const allInfos = document.querySelectorAll(".practical_info");
 
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const tabName = tab.id;
-
-      // Hide all practical_info blocks
+    function activateTab(tabName) {
+      // Remove all visible classes
       allInfos.forEach((info) => info.classList.remove("visible"));
 
-      // Show only those matching the tab
+      // Add visible class to matching tab content(s)
       const toShow = document.querySelectorAll(
         `.practical_info[data-tab="${tabName}"]`
       );
       toShow.forEach((el) => el.classList.add("visible"));
+    }
+
+    // Check for hash on page load
+    const hash = window.location.hash.replace("#", "");
+    if (hash) {
+      activateTab(hash);
+    } else {
+      activateTab("cancellation"); // Default tab
+    }
+
+    // Add event listeners for tab clicks
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const tabName = tab.id;
+
+        // Update URL hash without scrolling
+        history.replaceState(null, "", `#${tabName}`);
+
+        activateTab(tabName);
+      });
     });
   });
 </script>

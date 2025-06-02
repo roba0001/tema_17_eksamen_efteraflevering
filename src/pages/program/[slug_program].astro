@@ -6,13 +6,16 @@ import CardCategory from "../../components/Card_Category.astro";
 import "../../style/styles.css";
 
 export async function getStaticPaths() {
-  const data = await fetch("https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/events", {
-    method: "GET",
-    headers: {
-      apikey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3J6Ymt0enlveXRvenpoaHJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDIxMzYsImV4cCI6MjA2MjM3ODEzNn0.3w77RtPOv0ngqCNY7WUomweHq-aqoPC2LlEKmQBj1H0",
-    },
-  }).then((response) => response.json());
+  const data = await fetch(
+    "https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/events",
+    {
+      method: "GET",
+      headers: {
+        apikey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3J6Ymt0enlveXRvenpoaHJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDIxMzYsImV4cCI6MjA2MjM3ODEzNn0.3w77RtPOv0ngqCNY7WUomweHq-aqoPC2LlEKmQBj1H0",
+      },
+    }
+  ).then((response) => response.json());
 
   return data.map((event) => {
     return {
@@ -26,36 +29,78 @@ const { myData } = Astro.props;
 ---
 
 <Skelet title={myData.title}>
-  <a data-cursor="fill" href="/program.html"> <div id="back"><Arrow arrow_class="left" /></div></a>
+  <a data-cursor="fill" href="/program.html">
+    <div id="back"><Arrow arrow_class="left" /></div></a
+  >
   <Gradient gradient_class="program_sw" />
   <div class="images_container">
-    <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_1">
+    <div
+      data-cursor="text"
+      data-cursor-text="Click / Drag"
+      class="resizable draggable image_1"
+    >
       <img src={`/imgs/Program/${myData.gallery_1}`} alt="event_image" />
-      <div data-cursor="text" data-cursor-text="Resize" class="resize-handle bottom-right">
+      <div
+        data-cursor="text"
+        data-cursor-text="Resize"
+        class="resize-handle bottom-right"
+      >
         <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
       </div>
     </div>
-    <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_2">
+    <div
+      data-cursor="text"
+      data-cursor-text="Click / Drag"
+      class="resizable draggable image_2"
+    >
       <img src={`/imgs/Program/${myData.gallery_2}`} alt="event_image" />
-      <div data-cursor="text" data-cursor-text="Resize" class="resize-handle bottom-right">
+      <div
+        data-cursor="text"
+        data-cursor-text="Resize"
+        class="resize-handle bottom-right"
+      >
         <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
       </div>
     </div>
-    <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_3">
+    <div
+      data-cursor="text"
+      data-cursor-text="Click / Drag"
+      class="resizable draggable image_3"
+    >
       <img src={`/imgs/Program/${myData.gallery_3}`} alt="event_image" />
-      <div data-cursor="text" data-cursor-text="Resize" class="resize-handle bottom-right">
+      <div
+        data-cursor="text"
+        data-cursor-text="Resize"
+        class="resize-handle bottom-right"
+      >
         <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
       </div>
     </div>
-    <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_4">
+    <div
+      data-cursor="text"
+      data-cursor-text="Click / Drag"
+      class="resizable draggable image_4"
+    >
       <img src={`/imgs/Program/${myData.gallery_4}`} alt="event_image" />
-      <div data-cursor="text" data-cursor-text="Resize" class="resize-handle bottom-right">
+      <div
+        data-cursor="text"
+        data-cursor-text="Resize"
+        class="resize-handle bottom-right"
+      >
         <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
       </div>
     </div>
-    <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_5">
+    <div
+      data-cursor="text"
+      data-cursor-text="Click / Drag"
+      class="resizable draggable image_5"
+    >
       <img src={`/imgs/Program/${myData.gallery_5}`} alt="event_image" />
-      <div data-cursor="text" data-cursor-text="Resize" class="resize-handle bottom-right">
+      <div
+        data-cursor="text"
+        data-cursor-text="Resize"
+        class="resize-handle bottom-right"
+      >
         <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
       </div>
     </div>
@@ -92,7 +137,11 @@ const { myData } = Astro.props;
   <div class="about_grid">
     <p class="about_text_1">{myData.about_1}</p>
     <div class="left_side">
-      <img class="speaker_image" src={`/imgs/speakers/${myData.speaker_img}`} alt="Speaker Image" />
+      <img
+        class="speaker_image"
+        src={`/imgs/speakers/${myData.speaker_img}`}
+        alt="Speaker Image"
+      />
       <p class="image_text">{myData.img_text}</p>
     </div>
     <p class="about_text_2">{myData.about_2}</p>
@@ -130,10 +179,11 @@ const { myData } = Astro.props;
   /* Layout og styling af funktionalitet */
   .images_container {
     width: 100%;
-    min-height: 500px;
+    min-height: 415px;
+    max-height: 415px;
     position: relative;
     overflow: hidden;
-    margin-top: 50px;
+    margin-top: 40px;
   }
 
   .resizable {
@@ -247,6 +297,7 @@ const { myData } = Astro.props;
     flex-direction: column;
     width: 100%;
     border-top: 1px solid var(--Black, #060604);
+    padding-bottom: 100px;
   }
   .socials_grid {
     display: grid;
@@ -435,8 +486,14 @@ const { myData } = Astro.props;
       isResizing = true;
       startX = e.clientX;
       startY = e.clientY;
-      startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
-      startHeight = parseInt(document.defaultView.getComputedStyle(resizable).height, 10);
+      startWidth = parseInt(
+        document.defaultView.getComputedStyle(resizable).width,
+        10
+      );
+      startHeight = parseInt(
+        document.defaultView.getComputedStyle(resizable).height,
+        10
+      );
 
       const onMouseMove = (e) => {
         if (isResizing) {
@@ -472,8 +529,14 @@ const { myData } = Astro.props;
           const containerRect = container.getBoundingClientRect();
           const elemRect = resizable.getBoundingClientRect();
 
-          let left = Math.max(0, Math.min(newX, container.clientWidth - elemRect.width));
-          let top = Math.max(0, Math.min(newY, container.clientHeight - elemRect.height));
+          let left = Math.max(
+            0,
+            Math.min(newX, container.clientWidth - elemRect.width)
+          );
+          let top = Math.max(
+            0,
+            Math.min(newY, container.clientHeight - elemRect.height)
+          );
 
           resizable.style.left = `${left}px`;
           resizable.style.top = `${top}px`;
