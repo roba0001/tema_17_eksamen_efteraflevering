@@ -1,5 +1,6 @@
 ---
 import CursorToggle from "./Cursor_Toggle.astro";
+const { pathname } = Astro.url;
 ---
 
 <header class="class_header">
@@ -15,18 +16,24 @@ import CursorToggle from "./Cursor_Toggle.astro";
     </div>
     <div class="right_row">
       <CursorToggle />
-      <a data-cursor="fill" href="/news.html" class="visible_tab" id="news"
-        >News</a
+      <a
+        data-cursor="fill"
+        href="/news.html"
+        class={`visible_tab ${pathname === "/news.html" ? "active-tab" : ""}`}
+        class="visible_tab"
+        id="news">News</a
       >
       <a
         data-cursor="fill"
         href="/program.html"
+        class={`visible_tab ${pathname === "/program.html" ? "active-tab" : ""}`}
         class="visible_tab"
         id="program">Program</a
       >
       <a
         data-cursor="fill"
         href="/tickets.html"
+        class={`visible_tab ${pathname === "/tickets.html" ? "active-tab" : ""}`}
         class="visible_tab"
         id="tickets">Tickets</a
       >
@@ -420,6 +427,12 @@ import CursorToggle from "./Cursor_Toggle.astro";
       position: fixed;
       top: 17%;
       left: 74%;
+    }
+
+    .active-tab {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
     }
   }
 </style>
