@@ -1,0 +1,55 @@
+---
+import { useState, useEffect } from "react";
+const speakers = [
+  { name: "Arjun Malik", image: "/arjun_malik.webp" },
+  { name: "Elena Motta", image: "/elena_motta.webp" },
+  { name: "Jules Renner", image: "/jules_renner.webp" },
+  { name: "Lena Alvarez", image: "/lena_alvarez.webp" },
+  { name: "Nico Delgado", image: "/nico_delgado.webp" },
+  { name: "Sam Taylor", image: "/sam_taylor.webp" },
+  { name: "Takumi Hara", image: "/takumi_hara.webp" },
+];
+---
+
+<div class="carousel-container">
+  <ul id="carousel" class="carousel">
+    <li class="carousel-item">
+      <img src="/imgs/speakers/caroussel/arjun_malik.webp" alt="Arjun Malik" /><p>Arjun Malik</p>
+    </li>
+    <li class="carousel-item">
+      <img src="/imgs/speakers/caroussel/elena_motta.webp" alt="Elena Motta" /><p>Elena Motta</p>
+    </li>
+    <li class="carousel-item">
+      <img src="/imgs/speakers/caroussel/jules_renner.webp" alt="Jules Renner" /><p>Jules Renner</p>
+    </li>
+    <li class="carousel-item">
+      <img src="/imgs/speakers/caroussel/lena_alvarez.webp" alt="Lena Alvarez" /><p>Lena Alvarez</p>
+    </li>
+    <li class="carousel-item">
+      <img src="/imgs/speakers/caroussel/nico_delgado.webp" alt="Nico Delgado" /><p>Nico Delgado</p>
+    </li>
+    <li class="carousel-item">
+      <img src="/imgs/speakers/caroussel/sam_taylor.webp" alt="Sam Taylor" /><p>Sam Taylor</p>
+    </li>
+    <li class="carousel-item">
+      <img src="/imgs/speakers/caroussel/takumi_hara.webp" alt="Takumi Hara" /><p>Takumi Hara</p>
+    </li>
+  </ul>
+
+  <div class="arrows">
+    <button id="prevBtn" class="arrow left">‹</button>
+    <button id="nextBtn" class="arrow right">›</button>
+  </div>
+</div>
+
+<style>
+  .carousel-container {
+    margin: 10rem 0;
+  }
+  .carousel-item img {
+    height: 400px;
+    width: auto;
+    object-fit: cover;
+    display: block;
+  }
+</style>

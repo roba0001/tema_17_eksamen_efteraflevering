@@ -1,0 +1,49 @@
+---
+import "../style/styles.css";
+const { selectName, selectId } = Astro.props;
+---
+
+<div class="dropdown_wrapper">
+  <select data-cursor="fill" name={selectName} id={selectId}>
+    <slot />
+  </select>
+</div>
+
+<style>
+  .dropdown_wrapper {
+    border-radius: 3.75rem;
+    border: 1px solid var(--Dark-green, #21221a);
+    height: 1.5rem;
+    padding: 0.1875rem 5px;
+    width: 10rem;
+  }
+  select {
+    color: var(--black);
+    display: flex;
+    border-style: none;
+    justify-content: space-between;
+    align-items: center;
+    /* align-self: stretch; */
+    width: -webkit-fill-available;
+  }
+
+  input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  select:focus {
+    outline: none;
+    box-shadow: none;
+  }
+</style>
+
+<script></script>

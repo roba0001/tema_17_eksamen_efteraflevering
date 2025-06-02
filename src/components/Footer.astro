@@ -1,0 +1,292 @@
+---
+import "../style/styles.css";
+import Button from "./Button.astro";
+---
+
+<footer>
+  <div class="footer_info_flex">
+    <div class="contact">
+      <h3>Contact</h3>
+      <ul>
+        <li class="footer_p">+45 71 23 45 67</li>
+        <li class="footer_p">contact@visualimpact.com</li>
+        <li class="footer_p">CVR</li>
+        <li class="footer_p">Persondatapolitik</li>
+      </ul>
+      <div class="contact_icons">
+        <svg
+          data-cursor="fill"
+          xmlns="http://www.w3.org/2000/svg"
+          width="38"
+          height="38"
+          viewBox="0 0 38 38"
+          fill="none"
+        >
+          <path
+            d="M12.775 3.58301H25.725C30.6584 3.58301 34.6667 7.59134 34.6667 12.5247V25.4747C34.6667 27.8462 33.7246 30.1205 32.0478 31.7974C30.3709 33.4743 28.0965 34.4163 25.725 34.4163H12.775C7.84171 34.4163 3.83337 30.408 3.83337 25.4747V12.5247C3.83337 10.1532 4.77544 7.87885 6.45233 6.20196C8.12922 4.52507 10.4036 3.58301 12.775 3.58301ZM12.4667 6.66634C10.9948 6.66634 9.58309 7.25107 8.54226 8.2919C7.50144 9.33273 6.91671 10.7444 6.91671 12.2163V25.783C6.91671 28.8509 9.39879 31.333 12.4667 31.333H26.0334C27.5053 31.333 28.917 30.7483 29.9578 29.7075C30.9986 28.6666 31.5834 27.255 31.5834 25.783V12.2163C31.5834 9.14842 29.1013 6.66634 26.0334 6.66634H12.4667ZM27.3438 8.97884C27.8549 8.97884 28.345 9.18187 28.7064 9.54327C29.0678 9.90467 29.2709 10.3948 29.2709 10.9059C29.2709 11.417 29.0678 11.9072 28.7064 12.2686C28.345 12.63 27.8549 12.833 27.3438 12.833C26.8327 12.833 26.3425 12.63 25.9811 12.2686C25.6197 11.9072 25.4167 11.417 25.4167 10.9059C25.4167 10.3948 25.6197 9.90467 25.9811 9.54327C26.3425 9.18187 26.8327 8.97884 27.3438 8.97884ZM19.25 11.2913C21.2944 11.2913 23.2551 12.1035 24.7007 13.5491C26.1462 14.9947 26.9584 16.9553 26.9584 18.9997C26.9584 21.0441 26.1462 23.0047 24.7007 24.4503C23.2551 25.8959 21.2944 26.708 19.25 26.708C17.2057 26.708 15.245 25.8959 13.7994 24.4503C12.3538 23.0047 11.5417 21.0441 11.5417 18.9997C11.5417 16.9553 12.3538 14.9947 13.7994 13.5491C15.245 12.1035 17.2057 11.2913 19.25 11.2913ZM19.25 14.3747C18.0234 14.3747 16.847 14.8619 15.9797 15.7293C15.1123 16.5967 14.625 17.773 14.625 18.9997C14.625 20.2263 15.1123 21.4027 15.9797 22.27C16.847 23.1374 18.0234 23.6247 19.25 23.6247C20.4767 23.6247 21.6531 23.1374 22.5204 22.27C23.3878 21.4027 23.875 20.2263 23.875 18.9997C23.875 17.773 23.3878 16.5967 22.5204 15.7293C21.6531 14.8619 20.4767 14.3747 19.25 14.3747Z"
+            fill="#060604"></path>
+        </svg>
+        <svg
+          data-cursor="fill"
+          xmlns="http://www.w3.org/2000/svg"
+          width="38"
+          height="38"
+          viewBox="0 0 38 38"
+          fill="none"
+        >
+          <path
+            d="M30.0417 5.125C30.8594 5.125 31.6437 5.44985 32.2219 6.02809C32.8001 6.60632 33.125 7.39058 33.125 8.20833V29.7917C33.125 30.6094 32.8001 31.3937 32.2219 31.9719C31.6437 32.5501 30.8594 32.875 30.0417 32.875H8.45833C7.64058 32.875 6.85632 32.5501 6.27809 31.9719C5.69985 31.3937 5.375 30.6094 5.375 29.7917V8.20833C5.375 7.39058 5.69985 6.60632 6.27809 6.02809C6.85632 5.44985 7.64058 5.125 8.45833 5.125H30.0417ZM29.2708 29.0208V20.85C29.2708 19.5171 28.7413 18.2387 27.7988 17.2962C26.8563 16.3537 25.5779 15.8242 24.245 15.8242C22.9346 15.8242 21.4083 16.6258 20.6683 17.8283V16.1171H16.3671V29.0208H20.6683V21.4204C20.6683 20.2333 21.6242 19.2621 22.8113 19.2621C23.3837 19.2621 23.9327 19.4895 24.3374 19.8942C24.7422 20.299 24.9696 20.848 24.9696 21.4204V29.0208H29.2708ZM11.3567 13.6967C12.0436 13.6967 12.7024 13.4238 13.1881 12.9381C13.6738 12.4524 13.9467 11.7936 13.9467 11.1067C13.9467 9.67292 12.7904 8.50125 11.3567 8.50125C10.6657 8.50125 10.003 8.77575 9.51436 9.26436C9.02575 9.75297 8.75125 10.4157 8.75125 11.1067C8.75125 12.5404 9.92292 13.6967 11.3567 13.6967ZM13.4996 29.0208V16.1171H9.22917V29.0208H13.4996Z"
+            fill="#060604"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="practical_information">
+      <h3>Important Links</h3>
+      <ul>
+        <li data-cursor="fill" class="footer_p">
+          <a href="/practical_information.html">Cancellation Policy</a>
+        </li>
+        <li data-cursor="fill" class="footer_p">
+          <a href="/practical_information.html">Health & Safety</a>
+        </li>
+        <li data-cursor="fill" class="footer_p">
+          <a href="/map.html">Location & Directions</a>
+        </li>
+        <li data-cursor="fill" class="footer_p">
+          <a href="/program.html">Program</a>
+        </li>
+        <li data-cursor="fill" class="footer_p">
+          <a href="/tickets.html">Tickets</a>
+        </li>
+      </ul>
+    </div>
+    <div class="our_platforms">
+      <h3>Our Platforms</h3>
+      <ul>
+        <li data-cursor="fill" class="footer_p">
+          <a href="https://www.softworld.dk/">Softworld</a>
+        </li>
+        <li data-cursor="fill" class="footer_p">
+          <a href="https://softworldtraining.com/">Softworld Training</a>
+        </li>
+        <li data-cursor="fill" class="footer_p">
+          <a href="https://softworldlearning.com/">Softworld Learning</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer_newsletter">
+    <h3 id="form_label">Newsletter</h3>
+    <form>
+      <!-- doubleckeck med peter om dette er ok -->
+      <!-- <label for="email">Newsletter</label> -->
+      <input
+        data-cursor="fill"
+        aria-labelledby="form_label"
+        autocomplete="email"
+        required
+        type="email"
+        id="email"
+        name="user_email"
+        placeholder="Enter email..."
+      />
+      <Button data-cursor="fill" button_class="secondary" text="Subscribe" />
+    </form>
+  </div>
+
+  <section class="footer_bottom_section">
+    <img
+      class="big_footer_img"
+      src="/imgs/logos/footer_logo_1200.svg"
+      alt="big logo"
+    />
+    <img
+      class="small_footer_img hide"
+      src="/imgs/logos/footer_logo_350.svg"
+      alt="small logo"
+    />
+  </section>
+</footer>
+
+<style>
+  /* mobile */
+  .big_footer_img {
+    display: none;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    border-color: var(--black);
+    border-style: solid none;
+    border-width: 1px;
+    position: relative;
+    z-index: 5;
+    background-color: var(--off_white);
+  }
+
+  .footer_info_flex {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 1.25rem 0;
+    padding: 1.25rem;
+
+    > * {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.62rem;
+  }
+
+  .footer_newsletter {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.62rem;
+    padding: 1.25rem;
+    border-color: var(--black);
+    border-top-style: solid;
+    border-width: 1px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.62rem;
+    }
+  }
+
+  .footer_newsletter {
+    form {
+      width: 75%;
+    }
+
+    input {
+      padding: 0.75rem;
+      border-radius: 1.875rem;
+      border: 1px solid var(--black, #060604);
+      background: var(--off_white, #fffffa);
+      width: 90%;
+    }
+  }
+
+  .footer_bottom_section {
+    grid-row: 2;
+    grid-column: 1/4;
+    width: 100%;
+    display: grid;
+    padding: 1.25rem 0;
+    border-top-style: solid;
+    border-color: var(--black);
+    border-width: 1px;
+
+    & img {
+      justify-self: center;
+      align-self: center;
+
+      padding: 0 10px;
+    }
+  }
+
+  /* desktop */
+  @media (min-width: 800px) {
+    .small_footer_img {
+      display: none;
+    }
+    .big_footer_img {
+      display: block;
+    }
+
+    footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr auto;
+      width: 100%;
+      /* padding: 1.25rem 0; */
+      border-color: var(--black);
+      border-style: solid none;
+      border-width: 1px;
+    }
+
+    .footer_info_flex {
+      grid-column: 1/3;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 1.25rem 0;
+
+      > * {
+        display: flex;
+        flex-direction: column;
+        gap: 0.62rem;
+      }
+    }
+
+    .footer_newsletter {
+      grid-column: 3;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      padding: 1.25rem 0;
+      border-left-style: solid;
+      border-top-style: none;
+      border-color: var(--black);
+      border-width: 1px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    .footer_bottom_section {
+      grid-row: 2;
+      grid-column: 1/4;
+      width: 100%;
+      display: grid;
+      padding: 1.25rem 0;
+      border-top-style: solid;
+      border-color: var(--black);
+      border-width: 1px;
+
+      & img {
+        justify-self: center;
+        align-self: center;
+        width: 95%;
+      }
+    }
+
+    .footer_newsletter {
+      form {
+        width: 75%;
+      }
+
+      input {
+        padding: 0.75rem;
+        border-radius: 1.875rem;
+        border: 1px solid var(--black, #060604);
+        background: var(--off_white, #fffffa);
+        width: 90%;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.62rem;
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+</style>

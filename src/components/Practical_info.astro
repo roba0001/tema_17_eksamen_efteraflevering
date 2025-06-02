@@ -1,0 +1,39 @@
+---
+const { id, p1, p2, p3, headline } = Astro.props;
+---
+
+<div id={id} class="holder">
+  <h2>{headline}</h2>
+  <p>{p1}</p>
+  <p class="space">{p2}</p>
+  <p class="space">{p3}</p>
+</div>
+
+<style>
+  p {
+    padding: 0px 20px;
+  }
+  .space {
+    padding-top: 20px;
+  }
+  h2 {
+    display: none;
+  }
+  .holder {
+    margin-bottom: 50px;
+  }
+  @media (min-width: 1000px) {
+    p {
+      padding: 0px 40px;
+    }
+    h2 {
+      margin-top: 120px;
+      padding: 0px 40px;
+      margin-bottom: 40px;
+      display: block;
+    }
+    .holder {
+      margin-bottom: 0px;
+    }
+  }
+</style>

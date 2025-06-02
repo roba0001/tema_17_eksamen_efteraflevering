@@ -1,0 +1,18 @@
+---
+const { ex_size } = Astro.props;
+---
+
+<img data-cursor="fill" class="ex" src="/imgs/Program/numbers/x.svg" alt="X" />
+
+<style>
+  img {
+    align-self: flex-end;
+    width: 25px;
+  }
+
+  @media (min-width: 800px) {
+    img {
+      width: 35px;
+    }
+  }
+</style>

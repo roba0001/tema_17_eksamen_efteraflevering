@@ -1,0 +1,36 @@
+---
+import PracticalInfo from "../components/Practical_info.astro";
+import VenueCard from "./Venue_card.astro";
+---
+
+<div>
+  <PracticalInfo
+    headline="Festival Venues"
+    p1="Visual Impact takes place across three iconic venues in central Copenhagen: BLOX, Huset, and The Black Diamond. "
+    p2="All venues are within walking distance of each other, making it easy to explore the festival on foot. The nearest metro station is Gammel Strand, just minutes away from all locations."
+  />
+  <VenueCard
+    venue_class="left"
+    headline="HUSET"
+    address="Rådhusstræde 13, 1466 København K"
+    about="Known for its creative energy and cultural roots, Huset is ideal for intimate talks and hands-on workshops."
+    more="For more information about this venue visit https://huset.dk "
+    image="/imgs/locations/huset.png"
+  />
+  <VenueCard
+    venue_class="right"
+    headline="BLOX"
+    address="Bryghuspladsen 8, 1473 København K"
+    about="BLOX is a hub for architecture and design innovation, offering sleek, modern spaces right by the waterfront."
+    more="For more information about this venue visit https://www.blox.dk"
+    image="/imgs/locations/blox.png"
+  />
+  <VenueCard
+    venue_class="left"
+    headline="The Black Diamond"
+    address="Søren Kierkegaards Plads 1, 1221 København K"
+    about="With its striking architecture and connection to the Royal Danish Library, The Black Diamond sets the stage for exhibitions and keynote sessions."
+    more="For more information about this venue visit https://www.kb.dk/besoeg-os/den-sorte-diamant"
+    image="/imgs/locations/black_diamond.png"
+  />
+</div>

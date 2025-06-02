@@ -1,0 +1,167 @@
+---
+import Skelet from "../layouts/Skelet.astro";
+import Gradient from "../components/Gradient.astro";
+import Text_And_Arrow from "../components/Text_And_Arrow.astro";
+import PracticalInfo from "../components/Practical_info.astro";
+import Locations from "../components/Locations.astro";
+import "../style/styles.css";
+---
+
+<Skelet title="Practical Information">
+  <Gradient gradient_class="practical1" />
+  <Gradient gradient_class="practical2" />
+  <div class="practical_container">
+    <div class="left_side">
+      <h1>Practical Information</h1>
+      <div class="tabs">
+        <div id="cancellation">
+          <Text_And_Arrow text="Cancellation Policy" />
+        </div>
+        <div class="practical_info active mobile" data-tab="cancellation">
+          <PracticalInfo
+            p1="We understand that plans can change. If you're unable to attend Visual Impact, you can cancel your ticket up to 7 days before the festival for a full refund – no questions asked. Unfortunately, we cannot offer refunds for cancellations made within 7 days of the event’s start time."
+            p2="However, tickets are fully transferable, so if you can't make it, feel free to pass your ticket on to a colleague or friend. For cancellations, transfers, or any questions, please reach out to us at contact@visualimpact.com."
+            p3="We're here to help ensure your experience is smooth and flexible."
+          />
+        </div>
+        <div id="health">
+          <Text_And_Arrow text="Health and Safety Policy" />
+        </div>
+        <div class="practical_info mobile" data-tab="health">
+          <PracticalInfo
+            p1="At Visual Impact, we are committed to creating a safe, inclusive, and comfortable environment for all attendees. All venues follow up-to-date safety regulations and accessibility standards, with clear signage, trained staff, and first aid on-site throughout the festival."
+            p2="We encourage attendees to look after themselves and each other – whether that means taking breaks, staying hydrated, or speaking to a team member if something feels off. If you have specific health or accessibility needs, please let us know in advance at contact@visualimpact.dk, and we’ll do our best to accommodate."
+            p3="Together, we can make Visual Impact a space that’s not just inspiring, but safe for everyone."
+          />
+        </div>
+        <div id="venues">
+          <Text_And_Arrow text="Festival Venues" />
+        </div>
+        <div class="practical_info mobile" data-tab="venues">
+          <Locations />
+        </div>
+        <div id="contact">
+          <Text_And_Arrow text="Contact Information" />
+        </div>
+        <div class="practical_info mobile" data-tab="contact">
+          <PracticalInfo
+            p1="Got questions, ideas, or need help? We’re here for you."
+            p2="Reach out to the Visual Impact team anytime at contact@visualimpact.com or give us a call at +45 71 23 45 67."
+            p3="We aim to respond within 1–2 business days."
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="right_side">
+      <div class="practical_info active" data-tab="cancellation">
+        <PracticalInfo
+          headline="Cancellation Policy"
+          p1="We understand that plans can change. If you're unable to attend Visual Impact, you can cancel your ticket up to 7 days before the festival for a full refund – no questions asked. Unfortunately, we cannot offer refunds for cancellations made within 7 days of the event’s start time."
+          p2="However, tickets are fully transferable, so if you can't make it, feel free to pass your ticket on to a colleague or friend. For cancellations, transfers, or any questions, please reach out to us at contact@visualimpact.com."
+          p3="We're here to help ensure your experience is smooth and flexible."
+        />
+      </div>
+      <div class="practical_info" data-tab="health">
+        <PracticalInfo
+          headline="Health and Safety Policy"
+          p1="At Visual Impact, we are committed to creating a safe, inclusive, and comfortable environment for all attendees. All venues follow up-to-date safety regulations and accessibility standards, with clear signage, trained staff, and first aid on-site throughout the festival."
+          p2="We encourage attendees to look after themselves and each other – whether that means taking breaks, staying hydrated, or speaking to a team member if something feels off. If you have specific health or accessibility needs, please let us know in advance at contact@visualimpact.dk, and we’ll do our best to accommodate."
+          p3="Together, we can make Visual Impact a space that’s not just inspiring, but safe for everyone."
+        />
+      </div>
+      <div class="practical_info" data-tab="venues">
+        <Locations />
+      </div>
+      <div class="practical_info" data-tab="contact">
+        <PracticalInfo
+          headline="Contact Information"
+          p1="Got questions, ideas, or need help? We’re here for you."
+          p2="Reach out to the Visual Impact team anytime at contact@visualimpact.com or give us a call at +45 71 23 45 67."
+          p3="We aim to respond within 1–2 business days."
+        />
+      </div>
+    </div>
+  </div>
+</Skelet>
+
+<style>
+  .practical_info {
+    display: none;
+  }
+
+  .practical_info.visible {
+    display: block;
+  }
+  h1 {
+    margin-top: 120px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .practical_container {
+    display: grid;
+    z-index: 100;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .left_side {
+    display: grid;
+    width: 100%;
+    min-height: 100vh;
+    grid-template-rows: 280px auto;
+  }
+  .right_side {
+    display: none;
+  }
+  .tabs {
+    display: grid;
+    width: 100%;
+  }
+  @media (min-width: 1000px) {
+    .left_side {
+      grid-template-rows: 7fr 10.5fr;
+    }
+    .mobile {
+      display: none !important;
+    }
+    .practical_container {
+      grid-template-columns: 1fr 1fr;
+    }
+    .right_side {
+      border-left: 1px solid var(--Black, #060604);
+      display: grid;
+      max-height: 100vh;
+      overflow-y: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .tabs {
+      display: grid;
+      grid-row: 2;
+    }
+    h1 {
+      margin-top: 120px;
+      padding-left: 40px;
+    }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll(".tabs > div[id]");
+  const allInfos = document.querySelectorAll(".practical_info");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const tabName = tab.id;
+
+      // Hide all practical_info blocks
+      allInfos.forEach((info) => info.classList.remove("visible"));
+
+      // Show only those matching the tab
+      const toShow = document.querySelectorAll(`.practical_info[data-tab="${tabName}"]`);
+      toShow.forEach((el) => el.classList.add("visible"));
+    });
+  });
+</script>

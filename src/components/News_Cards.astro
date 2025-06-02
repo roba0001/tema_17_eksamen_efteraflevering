@@ -1,0 +1,165 @@
+---
+import CardCategory from "./Card_Category.astro";
+import "../style/styles.css";
+const { data, link } = Astro.props;
+---
+
+<a
+  data-type={data.type}
+  class=`news_card ${data.size_class}`
+  id="container"
+  href={link}
+  data-cursor="fill"
+>
+  <div class="top">
+    <img class="news_img" src={`/imgs/news${data.image_1}`} alt="news_image" />
+    <div class="top_overlay">
+      <CardCategory class="category" className="news" text={data.type} />
+    </div>
+  </div>
+  <div class="bottom">
+    <p class="small_p">( {data.date} )</p>
+    <p>{data.title}</p>
+  </div>
+</a>
+
+<style>
+  .column_2_row_2 .small_p,
+  .small_p {
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 12px;
+    line-height: normal;
+    font-weight: 600;
+    font-style: normal;
+    color: #1e3201;
+  }
+  #container {
+    display: flex;
+    flex-direction: row;
+    background-color: #f2ffc7;
+    /* background-color: var(--green); */
+    border-radius: 30px;
+    overflow: hidden;
+    text-decoration: none;
+    height: 100%;
+    min-height: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  .bottom {
+    min-height: 0;
+    padding: 15px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    flex-shrink: 0; /* prevent shrinking */
+  }
+  .top {
+    flex: 1 1 auto;
+    min-height: 0; /* important for child img scaling */
+    position: relative;
+    display: flex;
+  }
+
+  .news_img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .top_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .date {
+    padding-left: 15px;
+    padding-bottom: 5px;
+    color: var(--green, #cfff5c);
+    /* Desktop/H3 */
+    font-family: "General Sans";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  /* SPECIAL CLASSES */
+  .column_2_row_2 {
+    grid-column: span 2;
+    grid-row: span 8;
+  }
+  .column_1 {
+    grid-column: span 2;
+    grid-row: span 6;
+  }
+  .column_2 {
+    grid-column: span 2;
+    grid-row: span 6;
+  }
+  .row_2 {
+    grid-row: span 7;
+  }
+  img {
+    width: auto;
+    height: auto;
+  }
+  @media (max-width: 800px) {
+    .bottom {
+      width: 150px;
+    }
+    #container {
+      grid-column: span 2;
+    }
+    .news_img {
+      border-top-right-radius: 0px;
+    }
+    .date {
+      padding-bottom: 15px;
+    }
+    .flip#container {
+      flex-direction: row-reverse;
+    }
+    .flip .top_overlay {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  @media (min-width: 800px) {
+    #container {
+      flex-direction: column;
+    }
+    .bottom {
+      min-height: 0px;
+      padding: 15px;
+      display: flex;
+      gap: 5px;
+      flex-direction: column;
+      height: 100px;
+      flex-shrink: 0;
+    }
+    .column_2 .bottom {
+      height: 80px;
+    }
+    .column_2_row_2 p {
+      font-size: 20px;
+    }
+    .column_2_row_2 {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .column_1 {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+    .column_2 {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+    .row_2 {
+      grid-row: span 2;
+    }
+    /**Lav klasser til de forskellige widths ved at bruge grid span */
+  }
+</style>

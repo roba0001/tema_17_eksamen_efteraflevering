@@ -1,0 +1,101 @@
+---
+import "../style/styles.css";
+const { button_class, text } = Astro.props;
+---
+
+<button class={button_class} {...Astro.props}><span class="button_text">{text}</span> </button>
+
+<style>
+  /* DESKTOP BUTTONS */
+  @media (min-width: 800px) {
+    /* Styles for desktop and larger */
+    svg {
+      width: 0.9375rem;
+      height: 0.9375rem;
+      aspect-ratio: 1/1;
+    }
+
+    button {
+      display: flex;
+      height: 1.5rem;
+      padding: 0.1875rem 0.3125rem 0.1875rem 0.625rem;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.9375rem;
+      align-self: stretch;
+      border-radius: 3.75rem;
+      width: fit-content;
+    }
+  }
+
+  /* mobile BUTTONS */
+
+  .primary {
+    border: 1px solid var(--dark_green);
+    background: var(--dark_green);
+    color: var(--off_white);
+
+    & svg path {
+      stroke: var(--off_white);
+    }
+
+    &:hover {
+      background-color: var(--green);
+      color: var(--black);
+      border-color: var(--green);
+      & svg path {
+        stroke: var(--black);
+      }
+    }
+  }
+
+  .secondary {
+    border: 1px solid var(--green);
+    background: var(--green);
+    color: var(--black);
+
+    & svg path {
+      stroke: var(--black);
+    }
+
+    &:hover {
+      background-color: var(--dark_green);
+      color: var(--off_white);
+      border-color: var(--dark_green);
+      & svg path {
+        stroke: var(--off_white);
+      }
+    }
+  }
+  .outline {
+    border: 1px solid var(--black);
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--black);
+
+    & svg path {
+      stroke: var(--black);
+    }
+
+    &:hover {
+      background-color: var(--dark_green);
+      color: var(--off_white);
+      border-color: var(--dark_green);
+      & svg path {
+        stroke: var(--off_white);
+      }
+    }
+  }
+
+  button {
+    display: flex;
+    height: 1.5rem;
+    padding: 0.1875rem 0.625rem 0.1875rem 0.625rem;
+    align-items: center;
+    gap: 0.9375rem;
+
+    justify-content: flex-end;
+    align-self: stretch;
+    border-radius: 3.75rem;
+    width: fit-content;
+  }
+</style>

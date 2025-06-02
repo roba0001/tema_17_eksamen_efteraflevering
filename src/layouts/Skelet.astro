@@ -1,0 +1,218 @@
+---
+import "../style/styles.css";
+import Burgermenu from "../components/Burgermenu.astro";
+const { title } = Astro.props;
+import Footer from "../components/Footer.astro";
+import CursorToggle from "../components/Cursor_Toggle.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- red hat display font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="inner_cursor"></div>
+    <div class="outer_cursor"><p></p></div>
+
+    <Burgermenu />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0rem;
+      width: 100%;
+      background-color: var(--off_white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    main {
+      z-index: 0;
+    }
+    @media (min-width: 800px) {
+      /* styling of cursor */
+      .inner_cursor {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        height: 10px;
+        width: 10px;
+        transform: translate(-50%, -50%) scale(1);
+        background-color: black;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: 0.1s;
+        transition:
+          transform 0.5s ease,
+          opacity 0.5s ease;
+        z-index: 4000;
+        opacity: 1;
+      }
+      .outer_cursor {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        height: 25px;
+        width: 25px;
+        transform: translate(-50%, -50%);
+        border: 1px solid black;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: border-color 0.3s ease;
+        /* delay på outer cursor */
+        transition:
+          left 0.2s ease-out,
+          top 0.2s ease-out;
+
+        z-index: 4000;
+      }
+      body.custom-cursor-enabled {
+        cursor: none !important;
+
+        * {
+          cursor: none !important;
+        }
+      }
+
+      body.custom-cursor-disabled {
+        cursor: default;
+      }
+
+      body.custom-cursor-disabled .inner_cursor,
+      body.custom-cursor-disabled .outer_cursor {
+        display: none;
+      }
+
+      /* types of cursor */
+
+      .inner_cursor.cursor-fill {
+        background-color: var(--green);
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 1;
+      }
+
+      .outer_cursor.cursor-fill {
+        border-color: black;
+        transition: none;
+      }
+
+      .outer_cursor.cursor-text {
+        transform: translate(10px, -50%);
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.25rem;
+        height: 30px;
+        width: fit-content;
+        padding: 0 0.625rem;
+        border: 1px solid black;
+        border-radius: 3.75rem;
+        background-color: var(--black);
+        pointer-events: none;
+        transition: border-color 0.3s ease;
+        transition:
+          left 0.15s ease-out,
+          top 0.15s ease-out;
+
+        z-index: 4000;
+      }
+
+      .outer_cursor.cursor-text p {
+        color: var(--green);
+      }
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+  <script>
+    const innerCursor = document.querySelector(".inner_cursor");
+    const outerCursor = document.querySelector(".outer_cursor");
+
+    // placer inner og outer cursor efter musbevægelse
+    document.addEventListener("mousemove", (e) => {
+      const { clientX: x, clientY: y } = e;
+      innerCursor.style.left = `${x}px`;
+      innerCursor.style.top = `${y}px`;
+      outerCursor.style.left = `${x}px`;
+      outerCursor.style.top = `${y}px`;
+    });
+
+    document.addEventListener("mouseover", (e) => {
+      const target = e.target.closest("[data-cursor]");
+
+      if (target) {
+        // gem data-cursor værdi i en const
+        const type = target.dataset.cursor;
+
+        if (type === "fill") {
+          //  hvis type er fill, tilføj klasse .cursor-fill
+          innerCursor.classList.add("cursor-fill");
+          outerCursor.classList.add("cursor-fill");
+        } else if (type === "text") {
+          // gem data-cursor-text indhold i en const (text)
+          // kør funktion showCursorText med text som argument når mus hover over element med data-cursor="text"
+          const text = target.dataset.cursorText;
+          showCursorText(text);
+        }
+      }
+    });
+
+    function showCursorText(text) {
+      const innerText = outerCursor.querySelector("p");
+      if (innerText) {
+        // sæt textContent på p til at være indholdet af variablen text
+        innerText.textContent = text;
+
+        // tilføj klassen cursor-text
+        outerCursor.classList.add("cursor-text");
+      }
+    }
+
+    //sæt textContent på p til at være ingenting
+    function hideCursorText() {
+      const innerText = outerCursor.querySelector("p");
+      if (innerText) {
+        innerText.textContent = "";
+      }
+    }
+
+    // fjern klassen cursor-fill og cursor-text og kør funktion hideCursorText når mouse leaves et data element
+    document.addEventListener("mouseout", (e) => {
+      const target = e.target.closest("[data-cursor]");
+      if (target) {
+        outerCursor.classList.remove("hide");
+        innerCursor.classList.remove("hide");
+        innerCursor.classList.remove("cursor-fill");
+        outerCursor.classList.remove("cursor-fill");
+        innerCursor.classList.remove("cursor-text");
+        outerCursor.classList.remove("cursor-text");
+        hideCursorText();
+      }
+    });
+  </script>
+</html>

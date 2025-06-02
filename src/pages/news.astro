@@ -1,0 +1,114 @@
+---
+import Skelet from "../layouts/Skelet.astro";
+import Gradient from "../components/Gradient.astro";
+import NewsCards from "../components/News_Cards.astro";
+import "../style/styles.css";
+import Dropdown from "../components/Dropdown.astro";
+
+const data = await fetch(
+  "https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/News?order=created_at.asc",
+  {
+    method: "GET",
+    headers: {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3J6Ymt0enlveXRvenpoaHJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDIxMzYsImV4cCI6MjA2MjM3ODEzNn0.3w77RtPOv0ngqCNY7WUomweHq-aqoPC2LlEKmQBj1H0",
+    },
+  }
+).then((res) => res.json());
+
+// trækker alle .topic ud af news objekterne inde i data arrayet
+const allNewsTypes = data.flatMap((article) => article.type);
+// fjerner alle duplikater af topics
+const uniqueNewsTypes = [...new Set(allNewsTypes)];
+---
+
+<Skelet title="News">
+  <main>
+    <Gradient gradient_class="news_1" />
+    <Gradient gradient_class="news_2" />
+    <Gradient gradient_class="news_3" />
+    <h1>News</h1>
+    <h3>
+      Dive into the stories, people, and trends shaping this year’s festival.
+    </h3>
+    <p>
+      Explore interviews with speakers, deep dives into industry trends,
+      practical festival tips, spotlights on standout events, and insights from
+      across the creative landscape — all in one place.
+    </p>
+    <Dropdown selectName="newsType" selectId="newsTypeSelector">
+      <option value="allNewsTypes">All Types</option>
+      {
+        uniqueNewsTypes.map((newsType) => {
+          return <option value={newsType}>{newsType}</option>;
+        })
+      }
+    </Dropdown>
+
+    <div class="news_grid">
+      {
+        data.map((data) => {
+          return <NewsCards data={data} link={`/news/${data.slug_news}`} />;
+        })
+      }
+    </div>
+  </main>
+</Skelet>
+
+<style>
+  .news_grid > * {
+    height: 100%;
+  }
+  main {
+    margin: 120px 20px;
+  }
+  .news_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 10px; /* <-- fixed row height */
+    grid-auto-flow: row;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  h1 {
+    margin-bottom: 40px;
+  }
+  h3 {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 40px;
+  }
+  @media (min-width: 800px) {
+    .news_grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 250px); /* <-- fixed row height */
+    }
+    main {
+      margin: 120px 40px;
+    }
+  }
+</style>
+
+<script>
+  // news type filter
+  const newsTypeSelector = document.getElementById("newsTypeSelector");
+  const cards = document.querySelectorAll(".news_card");
+
+  newsTypeSelector.addEventListener("change", function () {
+    const selectedNewsTopic = this.value;
+
+    filterEventType(selectedNewsTopic);
+  });
+
+  function filterEventType(selectedNewsTopic) {
+    cards.forEach((card) => {
+      const cardTopic = card.dataset.type;
+      if (selectedNewsTopic === "allNewsTypes") {
+        card.style.display = "flex";
+      } else {
+        card.style.display = selectedNewsTopic === cardTopic ? "flex" : "none";
+      }
+    });
+  }
+</script>

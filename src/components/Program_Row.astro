@@ -1,0 +1,233 @@
+---
+import "../style/styles.css";
+import Arrow from "./Arrow.astro";
+import ProgramCard from "./Program_Card.astro";
+import TextAndArrow from "./Text_And_Arrow.astro";
+import X from "./X.astro";
+const { h1Date, stretchedNumber } = Astro.props;
+
+const data = await fetch(
+  'https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/events?dates=cs.["04.09.2025"]',
+  {
+    method: "GET",
+    headers: {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3J6Ymt0enlveXRvenpoaHJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDIxMzYsImV4cCI6MjA2MjM3ODEzNn0.3w77RtPOv0ngqCNY7WUomweHq-aqoPC2LlEKmQBj1H0",
+    },
+  }
+).then((res) => res.json());
+---
+
+<section class="program_row_wrapper">
+  <section class="program_row_closed visible">
+    <h1 data-cursor="fill">{h1Date}</h1>
+    <div data-cursor="fill" class="arrow">
+      <img src="/imgs/Program/numbers/arrow.svg" alt="arrow" />
+    </div>
+  </section>
+
+  <section class="program_row_open">
+    <img
+      class="stretched_number_svg"
+      src={`/imgs/Program/numbers/${stretchedNumber}.svg`}
+      alt="stretched 04"
+    />
+    <div class="x_and_scroll_flex">
+      <h1 class="mobile_date">{h1Date}</h1>
+
+      <X />
+
+      <div class="scroll_section">
+        <slot />
+      </div>
+    </div>
+  </section>
+</section>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scroll_section::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scroll_section {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .program_row_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  /* mobile */
+
+  .program_row_closed.visible {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: auto; */
+    padding: 20px;
+    border-color: var(--black);
+    border-width: 1px;
+    border-bottom-style: solid;
+    border-top-style: solid;
+  }
+
+  .arrow img {
+    width: 25px;
+  }
+
+  .program_row_open.visible {
+    padding: 20px;
+    border-color: var(--black);
+    border-width: 1px;
+    border-bottom-style: solid;
+    border-top-style: solid;
+
+    & .x_and_scroll_flex {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto 1fr;
+
+      .ex {
+        justify-self: flex-end;
+      }
+    }
+  }
+
+  .stretched_number_svg {
+    display: none;
+  }
+
+  .scroll_section {
+    grid-column: 1/-1;
+    display: flex;
+    gap: 0.9375rem;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
+
+  /* desktop */
+  @media (min-width: 800px) {
+    .program_row_closed img {
+      transition: 1s;
+    }
+
+    .program_row_closed:hover img {
+      transform: rotate(45deg) !important;
+    }
+
+    .arrow img {
+      width: 35px;
+    }
+    .mobile_date {
+      display: none;
+    }
+    .stretched_number_svg {
+      display: block;
+    }
+    h1 {
+      height: fit-content;
+    }
+    .program_row_closed,
+    .program_row_open {
+      border-top-style: solid;
+      border-width: 1px;
+    }
+    .program_row_open.visible {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4rem;
+    }
+    .program_row_closed.visible {
+      padding: 0 20px;
+    }
+
+    .x_and_scroll_flex {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      overflow-x: scroll;
+    }
+
+    .scroll_section {
+      display: flex;
+      gap: 2rem;
+      overflow: hidden;
+      overflow-x: scroll;
+    }
+
+    .program_row_closed {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 7.6rem;
+      padding: 0 2.5rem;
+    }
+  }
+  /* hidden */
+  .program_row_open,
+  .program_row_closed {
+    overflow: hidden;
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-2rem);
+    transition:
+      opacity 0.4s ease,
+      max-height 0.6s ease,
+      transform 0.4s ease;
+    display: none; /* start with display none */
+  }
+
+  /* open and visible */
+  .visible {
+    display: block;
+
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+
+  /* smoother closing animation */
+  .closing {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-2rem);
+  }
+
+  .program_row_wrapper {
+    max-width: 100%;
+    max-height: 100%;
+  }
+</style>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const rows = document.querySelectorAll(".program_row_wrapper");
+
+    rows.forEach((wrapper) => {
+      const arrow = wrapper.querySelector(".arrow");
+      const ex = wrapper.querySelector(".ex");
+      const openRow = wrapper.querySelector(".program_row_open");
+      const closedRow = wrapper.querySelector(".program_row_closed");
+
+      wrapper.addEventListener("click", () => {
+        closedRow.classList.remove("visible");
+        openRow.classList.remove("closing");
+        requestAnimationFrame(() => {
+          openRow.classList.add("visible");
+        });
+      });
+
+      ex.addEventListener("click", () => {
+        openRow.classList.add("closing"); // trigger transition
+        setTimeout(() => {
+          openRow.classList.remove("visible");
+          openRow.classList.remove("closing");
+          closedRow.classList.add("visible");
+        }, 400); // match transition duration
+      });
+    });
+  });
+</script>

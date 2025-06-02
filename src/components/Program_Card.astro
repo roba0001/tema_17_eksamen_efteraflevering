@@ -1,0 +1,89 @@
+---
+import "../style/styles.css";
+import CardCategory from "./Card_Category.astro";
+const { data, link } = Astro.props;
+---
+
+<section
+  class="program_card"
+  data-title={data.title.toLowerCase()}
+  data-type={data.type}
+  data-topic={data.topic}
+  data-venue={data.venue}
+>
+  <a data-cursor="fill" href={link}>
+    <div class="img_and_eventtype_wrapper">
+      <CardCategory className="program" text={data.type} />
+      <img src={`/imgs/Program/${data.gallery_1}`} alt="Event image" />
+    </div>
+    <div class="txt_wrapper">
+      <div class="topic_wrapper">
+        {
+          data.topic.map((topic) => {
+            return <p class="small_p">( {topic} )</p>;
+          })
+        }
+      </div>
+
+      <p class="card_title">{data.title}</p>
+    </div>
+  </a>
+</section>
+
+<style>
+  a {
+    text-decoration: none;
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  img {
+    display: flex;
+    width: 11.5625rem;
+    height: 9.375rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.875rem;
+    object-fit: cover;
+  }
+
+  section {
+    width: 11.5625rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .txt_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0 5px;
+  }
+
+  .topic_wrapper {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  @media (min-width: 800px) {
+    img {
+      display: flex;
+      width: 14.0625rem;
+      height: 14.375rem;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 1.875rem;
+    }
+
+    section {
+      width: 14.0625rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.62rem;
+    }
+  }
+</style>

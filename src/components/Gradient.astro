@@ -1,0 +1,222 @@
+---
+const { gradient_class } = Astro.props;
+---
+
+<div id="gradient" class={gradient_class}></div>
+
+<style>
+  /*MANUAL TIL BRUG PÅ SIDE*/
+  /*Opret en ny klasse og tilføj følgende:*/
+  /*STØRRELSE: definer width og height*/
+  /*POSITION: definer postion med bottom og right*/
+  /*Tilføj samme klasse til gradient i din fil*/
+  #gradient {
+    flex-shrink: 0;
+    border-radius: 1263px;
+    z-index: -1;
+    background: radial-gradient(50.06% 50% at 50.06% 50%, var(--green) 0%, var(--off_white) 100%);
+  }
+  .practical1 {
+    width: 800px;
+    height: 800px;
+    bottom: 100px;
+    right: 1000px;
+    z-index: -1;
+    position: fixed;
+  }
+  .practical2 {
+    width: 800px;
+    height: 800px;
+    bottom: -200px;
+    right: -100px;
+    z-index: -1;
+    position: fixed;
+  }
+  .program_sw {
+    position: absolute;
+    width: 1900px;
+    height: 1500px;
+    top: -700px;
+    right: 0px;
+  }
+
+  .news_sw {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 22rem;
+    right: 0;
+  }
+  .news_1 {
+    width: 800px;
+    height: 800px;
+    top: 800px;
+    right: -300px;
+    position: fixed;
+    z-index: -1;
+  }
+  .news_2 {
+    width: 1000px;
+    height: 1000px;
+    top: 10px;
+    left: -200px;
+    z-index: -1;
+    position: fixed;
+  }
+  .news_3 {
+    width: 850px;
+    height: 600px;
+    top: 1520px;
+    left: 30px;
+    z-index: -1;
+    position: fixed;
+  }
+  .tickets_2 {
+    display: none;
+  }
+
+  .tickets {
+    width: 800px;
+    height: 800px;
+    bottom: -200px;
+    right: -100px;
+    z-index: -1;
+    position: fixed;
+    overflow: hidden;
+  }
+
+  .map {
+    width: 800px;
+    height: 800px;
+    bottom: -106px;
+    right: -25rem;
+    z-index: -1;
+    position: fixed;
+    overflow: hidden;
+  }
+  .program {
+    width: 800px;
+    height: 800px;
+    bottom: -106px;
+    right: -25rem;
+    z-index: -1;
+    position: fixed;
+    overflow: hidden;
+  }
+  .program2 {
+    display: none;
+  }
+  .about {
+    width: 800px;
+    height: 800px;
+    bottom: 25rem;
+    right: -25rem;
+    z-index: -1;
+    position: fixed;
+    overflow: hidden;
+  }
+  @media (min-width: 800px) {
+    .program_sw {
+      width: 200rem;
+      height: 1500px;
+      top: -700px;
+      right: 2rem 32px;
+    }
+
+    .news_sw {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      top: 10rem;
+      right: 46rem;
+    }
+    .news_sw2 {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      top: 50rem;
+      right: 3rem;
+    }
+    .news_1 {
+      width: 800px;
+      height: 800px;
+      top: 800px;
+      right: -300px;
+      z-index: -1;
+      position: absolute;
+    }
+    .news_2 {
+      width: 1000px;
+      height: 1000px;
+      top: 10px;
+      left: -200px;
+      z-index: -1;
+      position: absolute;
+    }
+    .news_3 {
+      width: 850px;
+      height: 600px;
+      top: 1520px;
+      left: 30px;
+      z-index: -1;
+      position: absolute;
+    }
+    .tickets_2 {
+      width: 800px;
+      height: 800px;
+      top: 40px;
+      left: -600px;
+      z-index: -1;
+      position: fixed;
+    }
+
+    .tickets {
+      width: 800px;
+      height: 800px;
+      bottom: -200px;
+      right: -100px;
+      z-index: -1;
+      position: fixed;
+      overflow: hidden;
+    }
+
+    .map {
+      width: 800px;
+      height: 800px;
+      bottom: -106px;
+      right: 20rem;
+      z-index: -1;
+      position: fixed;
+      overflow: hidden;
+    }
+
+    .program {
+      width: 800px;
+      height: 800px;
+      bottom: 25rem;
+      right: -25rem;
+      z-index: -1;
+      position: fixed;
+      overflow: hidden;
+    }
+    .program2 {
+      display: block;
+      width: 800px;
+      height: 800px;
+      bottom: -20rem;
+      right: 60rem;
+      z-index: -1;
+      position: fixed;
+      overflow: hidden;
+    }
+    .about {
+      width: 800px;
+      height: 800px;
+      bottom: 14rem;
+      right: -18rem;
+      z-index: -1;
+      position: fixed;
+      overflow: hidden;
+    }
+  }
+</style>

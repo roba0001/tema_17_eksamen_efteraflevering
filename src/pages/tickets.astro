@@ -1,0 +1,149 @@
+---
+import Skelet from "../layouts/Skelet.astro";
+import Gradient from "../components/Gradient.astro";
+import "../style/styles.css";
+---
+
+<Skelet title="Tickets">
+  <Gradient gradient_class="tickets" />
+  <Gradient gradient_class="tickets_2" />
+  <main>
+    <h1>Tickets</h1>
+    <h3>Join us in Copenhagen · September 4–7, 2025</h3>
+    <p>
+      Be part of four days of inspiration, insight, and connection at the Copenhagen Visual &
+      Digital Design Festival.
+    </p>
+    <div class="included">
+      <p><b>Your ticket gives you access to:</b></p>
+      <ul>
+        <li>• Talks by leading voices in design and tech</li>
+        <li>• Hands-on workshops and exhibitions</li>
+        <li>• Community events and networking</li>
+      </ul>
+      <p class="cant">
+        <b>Can't find the right ticket for you?</b> Contact us on tickets@visualimpact.com.
+      </p>
+    </div>
+    <h2>Standard Passes</h2>
+    <div class="ticket_flex">
+      <img
+        data-cursor="fill"
+        class="web"
+        src="/imgs/tickets/green_ticket_web.svg"
+        alt="Green web ticket"
+      />
+      <img
+        class="web"
+        data-cursor="fill"
+        src="/imgs/tickets/grey_ticket_web.svg"
+        alt="Grey web ticket"
+      />
+      <img class="mobile" src="/imgs/tickets/green_ticket_mobile.svg" alt="Green mobile ticket" />
+      <img class="mobile" src="/imgs/tickets/grey_ticket_mobile.svg" alt="Grey mobile ticket" />
+    </div>
+    <h2>Student & Group Discounts</h2>
+    <div class="ticket_flex">
+      <img
+        class="web"
+        data-cursor="fill"
+        src="/imgs/tickets/black_ticket_web.svg"
+        alt="Black web ticket"
+      />
+      <img
+        class="web"
+        data-cursor="fill"
+        src="/imgs/tickets/white_ticket_web.svg"
+        alt="White web ticket"
+      />
+      <img class="mobile" src="/imgs/tickets/black_ticket_mobile.svg" alt="Black mobile ticket" />
+      <img class="mobile" src="/imgs/tickets/white_ticket_mobile.svg" alt="White mobile ticket" />
+    </div>
+  </main>
+
+  <style>
+    main {
+      margin: 120px 20px;
+    }
+    p,
+    li {
+      font-family: "Red Hat Display", sans-serif;
+      line-height: normal;
+      font-size: 15px;
+      font-weight: 400;
+      font-style: normal;
+      color: var(--black);
+    }
+    .web {
+      display: none;
+    }
+    .ticket_flex {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 50px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    h1 {
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+    h3 {
+      margin-bottom: 20px;
+    }
+    .included {
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+    .included p {
+      margin-bottom: 10px;
+    }
+    .cant {
+      margin-top: 20px;
+    }
+
+    @media (min-width: 800px) {
+      main {
+        margin: 120px 40px;
+      }
+
+      h1 {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+      h3 {
+        margin-bottom: 10px;
+      }
+      .included {
+        margin-top: 20px;
+        margin-bottom: 40px;
+      }
+      .included p {
+        margin-bottom: 10px;
+      }
+      .mobile {
+        display: none;
+      }
+      .web {
+        display: block;
+      }
+      .ticket_flex {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 40px;
+        margin-left: 40px;
+        margin-right: 40px;
+      }
+    }
+  </style>
+</Skelet>

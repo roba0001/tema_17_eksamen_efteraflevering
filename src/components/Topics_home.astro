@@ -1,0 +1,189 @@
+---
+
+---
+
+<section id="container">
+  <div class="left_side">
+    <div class="headline_flexbox">
+      <h3>( Festival Topics )</h3>
+      <p class="description">
+        Our topics highlight the most relevant areas in digital design right
+        now. Through a mix of talks, workshops, and showcases, you’ll explore
+        how these fields are evolving—and where they’re headed next.
+      </p>
+    </div>
+    <img
+      id="image_mobile"
+      src="/imgs/Program/day-4/3d-objects-in-motion/vid2.gif"
+      alt="burger"
+    />
+  </div>
+  <div class="right_side">
+    <a href="/program.html"
+      ><div class="all_topics" data-cursor="fill">
+        <div class="topic wide">
+          <h2>Motion Graphics</h2>
+          <img
+            class="motion_graphic_img"
+            src="/imgs/Program/day-4/3d-objects-in-motion/vid2.gif"
+            alt="burger"
+          />
+        </div>
+        <div class="topic long">
+          <h2>Marketing</h2>
+          <img
+            class="marketing_img"
+            src="/imgs/Program/day-4/The-Future-of-Animation-in-Advertising-and-Media/img1.webp"
+            alt="burger"
+          />
+        </div>
+        <div class="topic wide">
+          <h2>AI Design</h2>
+          <img
+            class="ai_design_img"
+            src="/imgs/Program/day-1/Sustainable-Motion-Visualizing-a-Greener-Future/img2.webp"
+            alt="burger"
+          />
+        </div>
+        <div class="topic wide">
+          <h2>Video Production</h2>
+          <img
+            class="video_production_img"
+            src="/imgs/Program/day-2/Mastering-Video-Production-with-a-Limited-Budget/vid5.gif"
+            alt="burger"
+          />
+        </div>
+        <div class="topic wide">
+          <h2>Branding</h2>
+          <img
+            class="branding_img"
+            src="/imgs/Program/day-3/Beyond-Engagement-Marketing-with-Purpose/img3.webp"
+            alt="burger"
+          />
+        </div>
+        <div class="topic long">
+          <h2>Animation</h2>
+          <img
+            class="animation_img"
+            src="/imgs/Program/day-3/AI-driven-character-design/vid3.gif"
+            alt="burger"
+          />
+        </div>
+        <div class="topic last_border long">
+          <h2>Web Design</h2>
+          <img
+            class="web_design_img"
+            src="/imgs/Program/day-4/typography-colors-and-spacing-making-your-ui-shine/img2.webp"
+            alt="burger"
+          />
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<style>
+  #container {
+    min-height: 85vh;
+    border-top: 1px solid var(--Black, #060604);
+    position: relative;
+  }
+
+  .left_side {
+    margin: 40px;
+  }
+
+  .headline_flexbox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .description {
+    max-width: 320px;
+  }
+
+  .right_side {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--Black, #060604);
+    justify-content: center;
+  }
+
+  h2 {
+    height: 80px;
+    padding: 0 40px;
+    align-content: center;
+  }
+
+  .last_border {
+    border-bottom: 1px solid var(--Black, #060604);
+  }
+  .topic img {
+    display: none;
+  }
+
+  .topic {
+    border-top: 1px solid var(--Black, #060604);
+    align-items: center;
+  }
+
+  img {
+    border-radius: 30px;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  @media (min-width: 800px) {
+    #container {
+      margin-bottom: 50px;
+      height: 95vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--Black, #060604);
+      border-bottom: 1px solid var(--Black, #060604);
+      position: relative;
+    }
+    .headline_flexbox {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    img {
+      display: none;
+      position: fixed;
+      border: none;
+      object-fit: cover;
+      border-radius: 30px;
+      position: absolute;
+    }
+
+    .long img {
+      width: 22%;
+      max-height: 380px;
+      bottom: 12%;
+      left: 15%;
+    }
+
+    .wide img {
+      width: 40%;
+      bottom: 12%;
+      left: 4.5%;
+    }
+
+    /*Billeder vises ved hover*/
+    .topic:hover img {
+      display: block; /*sørg for at billeder i den div der bliver hoveret på vises*/
+    }
+
+    .all_topics:hover h2 {
+      opacity: 0.5; /*sørg for at når man hover over all_topics får topics 50% opacity */
+    }
+    .topic:hover h2 {
+      opacity: 1; /*sørg for at hvis man hover over et topic bliver opacity 100% - Nu vil KUN en tab være helt sort */
+    }
+  }
+</style>

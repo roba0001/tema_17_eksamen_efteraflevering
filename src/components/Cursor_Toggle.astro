@@ -1,0 +1,74 @@
+---
+import "../style/styles.css";
+---
+
+<button data-cursor="fill" id="cursor-toggle" aria-pressed="true" style=" z-index: 3999;">
+  Styled Cursor
+</button>
+
+<style>
+  button {
+    height: 1.5rem;
+    padding: 0.1875rem 0.625rem;
+    margin: 0 40px;
+    border-radius: 3.75rem;
+    width: fit-content;
+
+    border: 1px solid var(--green);
+    background: var(--green);
+    color: var(--black);
+
+    z-index: 3999;
+
+    &:hover {
+      background-color: var(--dark_green);
+      color: var(--off_white);
+      border-color: var(--dark_green);
+    }
+  }
+
+  @media (max-width: 800px) {
+    button {
+      display: none;
+    }
+  }
+</style>
+
+<script client:load>
+  const toggleBtn = document.getElementById("cursor-toggle");
+
+  function enableCustomCursor() {
+    document.body.classList.add("custom-cursor-enabled");
+    document.body.classList.remove("custom-cursor-disabled");
+    toggleBtn.textContent = "Standard Cursor";
+    toggleBtn.setAttribute("aria-pressed", "true");
+  }
+
+  function disableCustomCursor() {
+    document.body.classList.remove("custom-cursor-enabled");
+    document.body.classList.add("custom-cursor-disabled");
+    toggleBtn.textContent = "Styled Cursor";
+    toggleBtn.setAttribute("aria-pressed", "false");
+  }
+
+  // On load, read saved preference
+  let isEnabled = localStorage.getItem("customCursorEnabled");
+  if (isEnabled === null) {
+    isEnabled = "true";
+  }
+  if (isEnabled === "true") {
+    enableCustomCursor();
+  } else {
+    disableCustomCursor();
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (document.body.classList.contains("custom-cursor-enabled")) {
+      disableCustomCursor();
+      localStorage.setItem("customCursorEnabled", "false");
+    } else {
+      enableCustomCursor();
+      localStorage.setItem("customCursorEnabled", "true");
+    }
+  });
+</script>

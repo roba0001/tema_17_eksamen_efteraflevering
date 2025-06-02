@@ -1,0 +1,331 @@
+---
+import ProgramCard from "../components/Program_Card.astro";
+import ProgramRow from "../components/Program_Row.astro";
+import Dropdown from "../components/Dropdown.astro";
+
+import Skelet from "../layouts/Skelet.astro";
+import Gradient from "../components/Gradient.astro";
+
+const data = await fetch("https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/events", {
+  method: "GET",
+  headers: {
+    apikey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3J6Ymt0enlveXRvenpoaHJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDIxMzYsImV4cCI6MjA2MjM3ODEzNn0.3w77RtPOv0ngqCNY7WUomweHq-aqoPC2LlEKmQBj1H0",
+  },
+}).then((res) => res.json());
+
+// trækker alle .type ud af event objekterne inde i data arrayet og putter dem i en const
+const allEventTypes = data.flatMap((event) => event.type);
+console.log(data.map((event) => event.type));
+// fjerner alle duplikater af eventTypes og putter dem i en const
+const uniqueEventTypes = [...new Set(allEventTypes)];
+
+// trækker alle .topic ud af event objekterne inde i data arrayet og putter dem i en const
+const allEventTopics = data.flatMap((event) => event.topic);
+// fjerner alle duplikater af eventTopics og putter dem i en const
+const uniqueEventTopics = [...new Set(allEventTopics)];
+
+// trækker alle .venue ud af event objekterne inde i data arrayet og putter dem i en const
+const allEventVenues = data.flatMap((event) => event.venue);
+//  fjerner alle duplikater af eventVenues og putter dem i en const
+const uniqueEventVenues = [...new Set(allEventVenues)];
+---
+
+<Skelet title="Program">
+  <div class="program_wrapper">
+    <h1>Program</h1>
+    <h3>
+      Over four days, the festival unfolds across three iconic Copenhagen venues: BLOX, HUSET, and
+      The Black Diamond.
+    </h3>
+    <p>
+      Each location hosts a vibrant mix of talks, workshops, exhibitions, and experiences focused on
+      the festival’s core topics — video production, motion graphics, marketing, branding, AI
+      design, animation, and web design.
+    </p>
+    <p class="p_last">
+      Explore the schedule below and start planning your journey through the future of digital
+      creativity. For directions and more information view <a href="/map.html" data-cursor="fill"
+        ><u>Map</u></a
+      >
+      or <a href="/practical_information.html" data-cursor="fill"><u>Practical Information</u></a>
+    </p>
+    <Gradient gradient_class="program" />
+    <Gradient gradient_class="program2" />
+    <div class="flex">
+      <div class="dropdown_filtrering">
+        <Dropdown selectName="eventTopic" selectId="eventTopicSelector">
+          <option value="allTopics">All Topics</option>
+
+          {
+            uniqueEventTopics.map((eventTopic) => {
+              return <option value={eventTopic}>{eventTopic}</option>;
+            })
+          }
+        </Dropdown>
+
+        <Dropdown selectName="eventType" selectId="eventTypeSelector">
+          <option value="allEventTypes">All Event Types</option>
+
+          {
+            uniqueEventTypes.map((eventType) => {
+              return <option value={eventType}>{eventType}</option>;
+            })
+          }
+        </Dropdown>
+
+        <Dropdown selectName="eventVenue" selectId="eventVenueSelector">
+          <option value="allVenues">All Venues</option>
+          {
+            uniqueEventVenues.map((eventVenue) => {
+              return <option value={eventVenue}>{eventVenue}</option>;
+            })
+          }
+        </Dropdown>
+      </div>
+
+      <div class="searchbar_wrapper">
+        <input
+          data-cursor="fill"
+          name="q"
+          type="search"
+          placeholder="Search..."
+          id="searchInput"
+          class="search"
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="15"
+          height="16"
+          viewBox="0 0 15 16"
+          fill="none"
+        >
+          <path
+            d="M5.54765 11.5953C3.99716 11.5953 2.68506 11.0582 1.61138 9.98393C0.537696 8.90967 0.000569442 7.59758 4.51579e-07 6.04765C-0.000568538 4.49772 0.536558 3.18563 1.61138 2.11138C2.6862 1.03713 3.99829 0.5 5.54765 0.5C7.09701 0.5 8.40939 1.03713 9.48478 2.11138C10.5602 3.18563 11.097 4.49772 11.0953 6.04765C11.0953 6.67354 10.9957 7.26387 10.7966 7.81863C10.5974 8.3734 10.3272 8.86415 9.98578 9.2909L14.7653 14.0704C14.9218 14.2269 15 14.426 15 14.6679C15 14.9097 14.9218 15.1088 14.7653 15.2653C14.6088 15.4218 14.4097 15.5 14.1679 15.5C13.926 15.5 13.7269 15.4218 13.5704 15.2653L8.7909 10.4858C8.36415 10.8272 7.8734 11.0974 7.31863 11.2966C6.76387 11.4957 6.17354 11.5953 5.54765 11.5953ZM5.54765 9.88834C6.61451 9.88834 7.52148 9.51508 8.26856 8.76856C9.01565 8.02205 9.38891 7.11508 9.38834 6.04765C9.38777 4.98023 9.01451 4.07354 8.26856 3.3276C7.52262 2.58165 6.61565 2.20811 5.54765 2.20697C4.47966 2.20583 3.57297 2.57937 2.8276 3.3276C2.08222 4.07582 1.70868 4.9825 1.70697 6.04765C1.70526 7.1128 2.07881 8.01977 2.8276 8.76856C3.57639 9.51735 4.48307 9.89061 5.54765 9.88834Z"
+            fill="black"></path>
+        </svg>
+      </div>
+    </div>
+
+    <section id="results">
+      <ProgramRow h1Date="04.09" stretchedNumber="04">
+        {
+          data.map((event) => {
+            if (event.dates.includes("04.09.2025")) {
+              return <ProgramCard data={event} link={`/program/${event.slug_program}`} />;
+            }
+            return null;
+          })
+        }
+      </ProgramRow>
+
+      <ProgramRow h1Date="05.09" stretchedNumber="05">
+        {
+          data.map((event) => {
+            if (event.dates.includes("05.09.2025")) {
+              return <ProgramCard data={event} link={`/program/${event.slug_program}`} />;
+            }
+            return null;
+          })
+        }
+      </ProgramRow>
+
+      <ProgramRow h1Date="06.09" stretchedNumber="06">
+        {
+          data.map((event) => {
+            if (event.dates.includes("06.09.2025")) {
+              return <ProgramCard data={event} link={`/program/${event.slug_program}`} />;
+            }
+            return null;
+          })
+        }
+      </ProgramRow>
+      <ProgramRow h1Date="07.09" stretchedNumber="07">
+        {
+          data.map((event) => {
+            if (event.dates.includes("07.09.2025")) {
+              return <ProgramCard data={event} link={`/program/${event.slug_program}`} />;
+            }
+            return null;
+          })
+        }
+      </ProgramRow>
+    </section>
+  </div>
+</Skelet>
+
+<style>
+  p {
+    margin: 0 20px;
+  }
+  p.p_last {
+    margin-bottom: 40px;
+    margin-top: 10px;
+  }
+  h3 {
+    margin: 0 20px;
+    margin-bottom: 10px;
+  }
+  h1 {
+    margin: 120px 2.5rem 2.5rem 20px;
+  }
+  .flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    margin: 1rem 20px;
+  }
+
+  .dropdown_filtrering {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .searchbar_wrapper {
+    display: flex;
+    width: 10rem;
+    height: 1.5rem;
+    padding: 0.1875rem 0.625rem 0.1875rem 0.625rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 3.75rem;
+    border: 1px solid var(--black);
+    align-self: flex-end;
+  }
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  @media (min-width: 800px) {
+    p {
+      margin: 0 40px;
+    }
+    p.p_last {
+      margin-top: 10px;
+    }
+    h3 {
+      margin: 0 40px;
+      margin-bottom: 10px;
+    }
+    .flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 1rem 40px;
+    }
+    .searchbar_wrapper {
+      order: 1;
+    }
+
+    select {
+      width: 10rem;
+    }
+
+    .dropdown_filtrering {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
+</style>
+
+<script type="module">
+  // -----------------SØGEFUNKTION-----------------
+  const input = document.getElementById("searchInput");
+  const cards = document.querySelectorAll(".program_card");
+
+  input.addEventListener("input", () => {
+    eventTopicSelector.value = "allTopics";
+    eventVenueSelector.value = "allVenues";
+    eventTypeSelector.value = "allEventTypes";
+    const query = input.value.toLowerCase();
+
+    cards.forEach((card) => {
+      const title = card.dataset.title;
+      card.style.display = title.includes(query) ? "block" : "none";
+    });
+  });
+
+  // -----------------FILTRERINGSFUNKTION-----------------
+  // topic filter
+  const eventTopicSelector = document.getElementById("eventTopicSelector");
+
+  eventTopicSelector.addEventListener("change", function () {
+    const selectedTopic = this.value;
+    eventTypeSelector.value = "allEventTypes";
+    eventVenueSelector.value = "allVenues";
+    filterTopics(selectedTopic);
+  });
+
+  function filterTopics(selectedTopic) {
+    cards.forEach((card) => {
+      const cardTopic = card.dataset.topic.split(",");
+
+      if (selectedTopic === "allTopics") {
+        card.style.display = "block";
+      } else {
+        card.style.display = cardTopic.includes(selectedTopic) ? "block" : "none";
+      }
+    });
+  }
+
+  // event type filter
+  const eventTypeSelector = document.getElementById("eventTypeSelector");
+
+  eventTypeSelector.addEventListener("change", function () {
+    const selectedEventType = this.value;
+    eventTopicSelector.value = "allTopics";
+    eventVenueSelector.value = "allVenues";
+    filterEventType(selectedEventType);
+  });
+
+  function filterEventType(selectedEventType) {
+    cards.forEach((card) => {
+      const cardEventType = card.dataset.type;
+      if (selectedEventType === "allEventTypes") {
+        card.style.display = "block";
+      } else {
+        card.style.display = selectedEventType === cardEventType ? "block" : "none";
+      }
+    });
+  }
+
+  // venue filter
+  const eventVenueSelector = document.getElementById("eventVenueSelector");
+
+  eventVenueSelector.addEventListener("change", function () {
+    const selectedVenue = this.value;
+    eventTopicSelector.value = "allTopics";
+
+    eventTypeSelector.value = "allEventTypes";
+
+    filterVenues(selectedVenue);
+  });
+
+  function filterVenues(selectedVenue) {
+    cards.forEach((card) => {
+      const cardVenue = card.dataset.venue;
+      if (selectedVenue === "allVenues") {
+        card.style.display = "block";
+      } else {
+        card.style.display = selectedVenue === cardVenue ? "block" : "none";
+      }
+    });
+  }
+</script>

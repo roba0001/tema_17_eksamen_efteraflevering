@@ -1,0 +1,107 @@
+---
+import "../style/styles.css";
+const { button_class, text } = Astro.props;
+---
+
+<button class={button_class} {...Astro.props}
+  ><span class="button_text">{text}</span>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16" fill="none">
+    <path
+      d="M6.08203 11.1608L6.11328 11.1129L8.87402 8.35413L9.22754 7.99963L8.87402 7.64612L6.11328 4.88635C6.07141 4.84439 6.06094 4.78265 6.08203 4.73108L6.11328 4.6842C6.15523 4.64226 6.21695 4.63189 6.26855 4.65295L6.31543 4.6842L9.53027 7.89807C9.55737 7.92517 9.5712 7.961 9.57129 7.99963C9.57129 8.01847 9.56761 8.03718 9.56055 8.05432L9.5293 8.10022V8.1012L6.31543 11.3151C6.27345 11.357 6.21178 11.3674 6.16016 11.3463L6.11328 11.3151C6.07143 11.2732 6.06116 11.2123 6.08203 11.1608Z"
+      fill="#FFFFFA"
+      stroke="#FFFFFA"></path>
+  </svg>
+</button>
+
+<style>
+  /* DESKTOP BUTTONS */
+  @media (min-width: 800px) {
+    /* Styles for desktop and larger */
+    svg {
+      width: 0.9375rem;
+      height: 0.9375rem;
+      aspect-ratio: 1/1;
+    }
+
+    button {
+      display: flex;
+      height: 1.5rem;
+      padding: 0.1875rem 0.3125rem 0.1875rem 0.625rem;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.9375rem;
+      align-self: stretch;
+      border-radius: 3.75rem;
+      width: fit-content;
+    }
+  }
+  .primary {
+    border: 1px solid var(--dark_green);
+    background: var(--dark_green);
+    color: var(--off_white);
+
+    & svg path {
+      stroke: var(--off_white);
+    }
+
+    &:hover {
+      background-color: var(--green);
+      color: var(--black);
+      border-color: var(--green);
+      & svg path {
+        stroke: var(--black);
+      }
+    }
+  }
+
+  .secondary {
+    border: 1px solid var(--green);
+    background: var(--green);
+    color: var(--black);
+
+    & svg path {
+      stroke: var(--black);
+    }
+
+    &:hover {
+      background-color: var(--dark_green);
+      color: var(--off_white);
+      border-color: var(--dark_green);
+      & svg path {
+        stroke: var(--off_white);
+      }
+    }
+  }
+  .outline {
+    border: 1px solid var(--black);
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--black);
+
+    & svg path {
+      stroke: var(--black);
+    }
+
+    &:hover {
+      background-color: var(--dark_green);
+      color: var(--off_white);
+      border-color: var(--dark_green);
+      & svg path {
+        stroke: var(--off_white);
+      }
+    }
+  }
+
+  button {
+    display: flex;
+    height: 1.5rem;
+    padding: 0.1875rem 0.3125rem 0.1875rem 0.625rem;
+    align-items: center;
+    gap: 0.9375rem;
+
+    justify-content: flex-end;
+    align-self: stretch;
+    border-radius: 3.75rem;
+    width: fit-content;
+  }
+</style>

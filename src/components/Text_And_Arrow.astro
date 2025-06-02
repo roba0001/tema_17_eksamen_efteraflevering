@@ -1,0 +1,70 @@
+---
+const { id, text } = Astro.props;
+import "../style/styles.css";
+---
+
+<div id={id} class="container">
+  <h2 data-cursor="fill">{text}</h2>
+  <img data-cursor="fill" class="pracical_arrow" src="/imgs/arrow.svg" alt="arrow" />
+</div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 100%;
+    border-top: 1px solid var(--Black, #060604);
+  }
+  .container img {
+    transform: rotate(45deg);
+    display: block;
+    width: 80px;
+    transition: 1s;
+  }
+  .container:hover img {
+    transform: rotate(90deg);
+  }
+
+  .container.active img {
+    transform: rotate(90deg);
+  }
+  h2 {
+    padding-left: 20px;
+  }
+
+  /*WEB*/
+  @media (min-width: 800px) {
+    h2 {
+      padding-left: 40px;
+    }
+    .container.active img {
+      transform: rotate(0deg);
+    }
+    .container:hover img {
+      transform: rotate(0deg);
+    }
+  }
+</style>
+
+<script>
+  // Konstant for alle elementer med class .container
+  const containers = document.querySelectorAll(".container");
+
+  // Lyt efter klik på alle containere
+  containers.forEach((container) => {
+    container.addEventListener("click", () => {
+      // sørg for at KUN den der er klikket er .active
+      // Hvis containeren ikke er den der blevet klikket på (if (c !== container)), så fjern active - containers.forEach((c) => betyder at den tjekker for hver
+      containers.forEach((c) => {
+        if (c !== container) c.classList.remove("active");
+      });
+
+      // Toggle 'active' På den container, som blev klikket på
+      container.classList.toggle("active");
+    });
+  });
+</script>

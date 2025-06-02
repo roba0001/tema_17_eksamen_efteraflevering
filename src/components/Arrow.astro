@@ -1,0 +1,39 @@
+---
+const { arrow_class } = Astro.props;
+---
+
+<img class={arrow_class} src="/imgs/Program/numbers/arrow.svg" alt="arrow" />
+
+<style>
+  /*Hvis du tilføjer en klasse til arrow fx. class="up", så vil arrow være roteret korrekt*/
+  .left {
+    transform: rotate(135deg);
+    width: 35px;
+  }
+
+  .right {
+    transform: rotate(0deg);
+    width: 35px;
+  }
+  .down {
+    transform: rotate(45deg);
+    width: 35px;
+    color: red; /* This changes the fill to red because of `fill="currentColor"` */
+    fill: red;
+    border-color: blue;
+  }
+  .up {
+    transform: rotate(-90deg);
+    width: 35px;
+  }
+  .downleft {
+    transform: rotate(45deg);
+    width: 35px;
+  }
+  .resizer {
+    transform: rotate(0deg);
+    width: 15px;
+    padding-top: 5px;
+    padding-left: 5px;
+  }
+</style>

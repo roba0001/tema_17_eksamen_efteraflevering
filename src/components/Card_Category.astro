@@ -1,0 +1,70 @@
+---
+import "../style/styles.css";
+const { text } = Astro.props;
+const { className } = Astro.props;
+---
+
+<section class={className}>
+  <p class="small_p">{text}</p>
+</section>
+
+<style>
+  /* mobile */
+  .program {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border-radius: 3.75rem;
+    position: relative;
+    background-color: var(--green);
+
+    height: 1.125rem;
+    padding: 0.1875rem 0.625rem;
+    gap: 0.3125rem;
+    left: 0.6875rem;
+    top: 2rem;
+  }
+  .news {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border-radius: 3.75rem;
+    position: relative;
+    background-color: var(--green);
+
+    height: 1.125rem;
+    padding: 0.1875rem 0.625rem;
+    gap: 0.3125rem;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-right: 15px;
+  }
+  .newsNoMargin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    border-radius: 3.75rem;
+    position: relative;
+    background-color: var(--green);
+
+    height: 1.125rem;
+    padding: 0.1875rem 0.625rem;
+    gap: 0.3125rem;
+  }
+
+  /* desktop */
+  @media (min-width: 800px) {
+    .program {
+      height: 1.5rem;
+      padding: 0.1875rem 0.9375rem;
+
+      gap: 0.625rem;
+      flex-shrink: 0;
+      left: 0.6875rem;
+      top: 2.5rem;
+    }
+  }
+</style>

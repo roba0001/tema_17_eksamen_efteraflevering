@@ -1,0 +1,197 @@
+---
+import Skelet from "../layouts/Skelet.astro";
+import Gradient from "../components/Gradient.astro";
+import "../style/styles.css";
+import TopicsHome from "../components/Topics_home.astro";
+import Button from "../components/Button.astro";
+import Carrusel from "../components/Carrusel.astro";
+import Searchbar from "../components/Searchbar.astro";
+---
+
+<Skelet title="Home">
+  <div id="scrollDiv" data-cursor="text" data-cursor-text="Scroll Down" class="hero_section">
+    <video autoplay muted loop playsinline>
+      <source src="/imgs/poster_motion_web.mp4" type="video/mp4" />
+    </video>
+    <img class="title" src="/imgs/title.svg" alt="visual impact festival" />
+    <img
+      data-cursor="fill"
+      id="scrollArrow"
+      class="arrow"
+      src="/imgs/green_arrow.svg"
+      alt="arrow_scroll_down"
+    />
+  </div>
+  <Gradient gradient_class="about" />
+
+  <div class="second_section">
+    <h2>Design with Purpose. Create with Impact.</h2>
+    <div class="section_flex">
+      <div class="left_side">
+        <p>
+          Join us in Copenhagen, one of the world’s most exciting cities for design and innovation,
+          from September 4th to 7th for four days filled with talks, workshops, exhibitions, and
+          networking.
+        </p>
+        <p>
+          Set in a city where creativity is part of the culture, the festival brings together voices
+          from across the globe to explore the latest in video production, motion graphics,
+          marketing, branding, AI design, animation, web design, and more. Whether you’re a
+          designer, technologist, strategist, or student, you’ll find fresh ideas, practical
+          insights, and new tools to inspire your work.
+        </p>
+        <p class="last">
+          This is more than an event — it’s a chance to connect with a creative community in a place
+          where design thinking shapes everything from architecture to everyday life. Discover
+          what’s next in digital creativity, right in the heart of Copenhagen.
+        </p>
+        <a data-cursor="fill" href="/program.html">
+          <Button
+            data-cursor="fill"
+            class="button"
+            text="View festival program"
+            button_class="primary"
+          />
+        </a>
+      </div>
+
+      <div class="right_side">
+        <img class="image1" src="/imgs/frontpage_1.webp" alt="festival images" />
+        <img class="image2" src="/imgs/frontpage_2.webp" alt="festival images" />
+        <Gradient gradient_class="home1" />
+        <Gradient gradient_class="home2" />
+      </div>
+    </div>
+  </div>
+  <TopicsHome />
+
+  <!-- <Carrusel />
+  <Searchbar /> -->
+</Skelet>
+
+<style>
+  video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .title {
+    position: absolute;
+    width: 53%;
+    bottom: 30px;
+    left: 20px;
+  }
+  .arrow {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+  }
+  .second_section {
+    margin: 40px;
+  }
+  .section_flex {
+    display: grid;
+  }
+  .second_section h2 {
+    margin-bottom: 40px;
+  }
+  .left_side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  p.last {
+    margin-bottom: 20px;
+  }
+  .right_side {
+    position: relative;
+    min-height: 450px;
+  }
+  @media (max-width: 800px) {
+    .image1 {
+      position: absolute;
+      bottom: 40px;
+      right: 195px;
+      border-radius: 30px;
+      height: 150px;
+      width: 130px;
+      object-fit: cover;
+      z-index: 3;
+    }
+    .image2 {
+      position: absolute;
+      bottom: 85px;
+      right: 90px;
+      border-radius: 30px;
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+  @media (min-width: 800px) {
+    .title {
+      width: 23%;
+      bottom: 20px;
+      left: 40px;
+    }
+    .arrow {
+      bottom: 20px;
+      right: 40px;
+    }
+    .second_section {
+      margin: 40px;
+      height: 85vh;
+    }
+    .section_flex {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .second_section h2 {
+      margin-bottom: 80px;
+    }
+    .left_side {
+      margin-left: 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    p.last {
+      margin-bottom: 20px;
+    }
+    .right_side {
+      position: relative;
+    }
+    .image1 {
+      position: absolute;
+      bottom: -30px;
+      right: 300px;
+      border-radius: 30px;
+      height: 210px;
+      width: 210px;
+      object-fit: cover;
+      z-index: 3;
+    }
+    .image2 {
+      position: absolute;
+      bottom: 40px;
+      right: 50px;
+      border-radius: 30px;
+      width: 300px;
+      height: 450px;
+      object-fit: cover;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("scrollDiv").onclick = function () {
+    const pageHeight = document.body.scrollHeight; // Konstant for den fulde længde af siden
+    const scrollAmount = pageHeight * 0.25; // ScrollAmount er 25% af den fulde side
+
+    window.scrollBy({
+      top: scrollAmount, // scroll ned ScrollAmount
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+</script>

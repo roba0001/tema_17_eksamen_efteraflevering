@@ -1,0 +1,506 @@
+---
+import Skelet from "../../layouts/Skelet.astro";
+import Arrow from "../../components/Arrow.astro";
+import Gradient from "../../components/Gradient.astro";
+import CardCategory from "../../components/Card_Category.astro";
+import "../../style/styles.css";
+
+export async function getStaticPaths() {
+  const data = await fetch("https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/events", {
+    method: "GET",
+    headers: {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3J6Ymt0enlveXRvenpoaHJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDIxMzYsImV4cCI6MjA2MjM3ODEzNn0.3w77RtPOv0ngqCNY7WUomweHq-aqoPC2LlEKmQBj1H0",
+    },
+  }).then((response) => response.json());
+
+  return data.map((event) => {
+    return {
+      params: { slug_program: event.slug_program },
+      props: { myData: event },
+    };
+  });
+}
+
+const { myData } = Astro.props;
+---
+
+<Skelet title={myData.title}>
+  <a data-cursor="fill" href="/program.html"> <div id="back"><Arrow arrow_class="left" /></div></a>
+  <section>
+    <Gradient gradient_class="program_sw" />
+    <div class="images_container">
+      <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_1">
+        <img src={`/imgs/Program/${myData.gallery_1}`} alt="event_image" />
+        <div data-cursor="text" data-cursor-text="Drag" class="resize-handle bottom-right">
+          <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
+        </div>
+      </div>
+      <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_2">
+        <img src={`/imgs/Program/${myData.gallery_2}`} alt="event_image" />
+        <div data-cursor="text" data-cursor-text="Drag" class="resize-handle bottom-right">
+          <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
+        </div>
+      </div>
+      <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_3">
+        <img src={`/imgs/Program/${myData.gallery_3}`} alt="event_image" />
+        <div data-cursor="text" data-cursor-text="Drag" class="resize-handle bottom-right">
+          <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
+        </div>
+      </div>
+      <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_4">
+        <img src={`/imgs/Program/${myData.gallery_4}`} alt="event_image" />
+        <div data-cursor="text" data-cursor-text="Drag" class="resize-handle bottom-right">
+          <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
+        </div>
+      </div>
+      <div data-cursor="text" data-cursor-text="Click / Drag" class="resizable draggable image_5">
+        <img src={`/imgs/Program/${myData.gallery_5}`} alt="event_image" />
+        <div data-cursor="text" data-cursor-text="Drag" class="resize-handle bottom-right">
+          <img class="arrow" src="/imgs/arrow.svg" alt="Arrow for rezising" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="headline_section">
+    <div class="categories">
+      <CardCategory className="program" text={myData.type} />
+
+      {
+        myData.topic.map((topic) => {
+          return <CardCategory className="program" text={topic} />;
+        })
+      }
+    </div>
+    <h1>{myData.title}</h1>
+  </div>
+  <div class="details_grid">
+    <div>
+      <p>
+        Date: {myData.dates.length > 1 ? "04-07.09.2025" : myData.dates[0]}
+      </p>
+      <p>Time: {myData.time}</p>
+    </div>
+    <div>
+      <a href="/map.html"
+        ><p data-cursor="text" data-cursor-text="Get Directions">
+          Venue: {myData.venue}
+        </p></a
+      >
+      <p>Speaker: {myData.speaker}</p>
+    </div>
+  </div>
+  <h3>( About )</h3>
+  <div class="about_grid">
+    <p class="about_text_1">{myData.about_1}</p>
+    <div class="left_side">
+      <img class="speaker_image" src={`/imgs/speakers/${myData.speaker_img}`} alt="Speaker Image" />
+      <p class="image_text">{myData.img_text}</p>
+    </div>
+    <p class="about_text_2">{myData.about_2}</p>
+  </div>
+  <h3 class="break">( Discover More from {myData.speaker} )</h3>
+  <div class="socials_flexbox">
+    <div class="socials_grid">
+      <p>Instagram</p>
+      <a data-cursor="fill">{myData.instagram}</a>
+    </div>
+    <div class="socials_grid">
+      <p>LinkedIn</p>
+      <a data-cursor="fill">{myData.linkedin}</a>
+    </div>
+    <div class="socials_grid">
+      <p>Website</p>
+      <a data-cursor="fill">{myData.website}</a>
+    </div>
+  </div>
+</Skelet>
+
+<style>
+  /* body {
+    overflow-x: hidden;
+  } */
+  #back {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    z-index: 3;
+  }
+
+  /* IMAGES */
+
+  /* Layout og styling af funktionalitet */
+  .images_container {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .resizable {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    height: 200px;
+    cursor: move;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1; /* Default z-index */
+    cursor: none;
+  }
+
+  .resizable img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make sure it fills the box */
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .resize-handle {
+    width: 40px;
+    height: 40px;
+    background: var(--green, #3abf7a);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    border-top-left-radius: 2px;
+    transform: translate(50%, 50%);
+    cursor: none;
+  }
+
+  .resize-handle .arrow {
+    width: 35px;
+    height: 35px;
+    transform: rotate(45deg);
+    position: relative;
+    top: -8%;
+    left: -8%;
+  }
+
+  /* Postion og størrelse af billeder */
+
+  .image_1 {
+    top: 25%;
+    left: 30%;
+    width: auto;
+    height: 234px;
+    z-index: 1;
+  }
+
+  .image_2 {
+    top: 59%;
+    left: -2%;
+    width: auto;
+    height: 132px;
+  }
+
+  .image_3 {
+    top: 49%;
+    left: 50%;
+    height: 229px;
+    width: auto;
+  }
+  .image_4 {
+    top: 4%;
+    left: 65%;
+    height: 190px;
+    width: auto;
+  }
+  .image_5 {
+    top: 14%;
+    left: 8%;
+    height: 137px;
+    width: auto;
+  }
+
+  /* REST */
+  main {
+    margin: 60px 0px;
+  }
+  h3,
+  h1 {
+    margin-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  h3 {
+    margin-top: 50px;
+  }
+  p {
+    padding: 0px 20px;
+  }
+  .categories {
+    display: flex;
+    margin-bottom: 40px;
+    gap: 10px;
+    padding-left: 10px;
+  }
+  .socials_flexbox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid var(--Black, #060604);
+  }
+  .socials_grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    border-bottom: 1px solid var(--Black, #060604);
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .socials_grid a {
+    padding-left: 20px;
+  }
+  .details_grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: 1fr;
+    border-top: 1px solid var(--Black, #060604);
+    overflow: hidden;
+  }
+  .details_grid p {
+    padding: 15px 0px;
+    width: 100%;
+    border-bottom: 1px solid var(--Black, #060604);
+    padding-left: 20px;
+    border-left: 1px solid var(--Black, #060604);
+  }
+
+  .about_grid {
+    display: grid;
+    grid-template-rows: auto;
+    row-gap: 30px;
+  }
+  .about_text_1 {
+    grid-row: 1;
+  }
+  .left_side {
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 70px;
+  }
+  .about_text_2 {
+    grid-row: 3;
+    margin-bottom: 100px;
+  }
+  .speaker_image {
+    border-radius: 30px;
+    width: 63%;
+    height: auto;
+  }
+  .image_text {
+    width: 59%;
+    padding: 0;
+  }
+  a {
+    font-family: "Red Hat Display", sans-serif;
+    line-height: normal;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--black);
+  }
+  @media (min-width: 800px) {
+    .images_container {
+      height: 400px;
+    }
+    .resize-handle {
+      width: 50px;
+      height: 50px;
+    }
+    /* Postion og størrelse af billeder */
+
+    .image_1 {
+      top: 12%;
+      left: 40%;
+      height: 350px;
+      width: 270px;
+    }
+
+    .image_2 {
+      top: 32%;
+      left: 2%;
+      height: 221px;
+      width: 230px;
+    }
+
+    .image_3 {
+      top: 9%;
+      left: 80%;
+      height: 300px;
+      width: 230px;
+    }
+    .image_4 {
+      top: 24%;
+      left: 54%;
+      height: 200px;
+      width: auto;
+      min-width: 220px;
+      max-width: 400px;
+    }
+    .image_5 {
+      top: 23%;
+      left: 18%;
+      height: 236px;
+      width: 280px;
+    }
+
+    h3,
+    h1 {
+      margin-bottom: 40px;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+    h3 {
+      margin-top: 60px;
+    }
+    p {
+      padding: 0px 40px;
+    }
+    .categories {
+      padding-left: 35px;
+    }
+    .socials_grid a {
+      padding-left: 40px;
+    }
+    .details_grid p {
+      padding-left: 40px;
+    }
+    .about_grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      row-gap: 40px;
+      margin-bottom: 250px;
+    }
+    .speaker_image {
+      border-radius: 30px;
+      width: 60%;
+      height: auto;
+    }
+    .image_text {
+      width: 60%;
+      padding: 0;
+    }
+    .about_grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      row-gap: 40px;
+      margin-bottom: 250px;
+      position: relative; /* Needed for sticky children */
+    }
+    .about_text_2 {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .left_side {
+      position: absolute;
+      grid-column: 2;
+      grid-row: 1;
+      top: 10px;
+    }
+    .break {
+      margin-top: 250px;
+    }
+  }
+</style>
+
+<script>
+  // DETTE SCRIPT ER BLEVT LAVET MED HJÆLP AF AI //
+  const container = document.querySelector(".images_container");
+  const resizables = document.querySelectorAll(".resizable");
+
+  resizables.forEach((resizable) => {
+    const handle = resizable.querySelector(".resize-handle");
+
+    let isResizing = false;
+    let isDragging = false;
+    let startX, startY, startWidth, startHeight, offsetX, offsetY;
+
+    handle.addEventListener("mousedown", (e) => {
+      e.stopPropagation();
+      isResizing = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      startWidth = parseInt(document.defaultView.getComputedStyle(resizable).width, 10);
+      startHeight = parseInt(document.defaultView.getComputedStyle(resizable).height, 10);
+
+      const onMouseMove = (e) => {
+        if (isResizing) {
+          const newWidth = startWidth + e.clientX - startX;
+          const newHeight = startHeight + e.clientY - startY;
+          resizable.style.width = `${newWidth}px`;
+          resizable.style.height = `${newHeight}px`;
+        }
+      };
+
+      const onMouseUp = () => {
+        isResizing = false;
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+      };
+
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    });
+
+    resizable.addEventListener("mousedown", (e) => {
+      if (e.target !== handle) {
+        isDragging = true;
+        offsetX = e.clientX - resizable.offsetLeft;
+        offsetY = e.clientY - resizable.offsetTop;
+
+        const onMouseMove = (e) => {
+          if (!isDragging) return;
+
+          const newX = e.clientX - offsetX;
+          const newY = e.clientY - offsetY;
+
+          const containerRect = container.getBoundingClientRect();
+          const elemRect = resizable.getBoundingClientRect();
+
+          let left = Math.max(0, Math.min(newX, container.clientWidth - elemRect.width));
+          let top = Math.max(0, Math.min(newY, container.clientHeight - elemRect.height));
+
+          resizable.style.left = `${left}px`;
+          resizable.style.top = `${top}px`;
+        };
+
+        const onMouseUp = () => {
+          isDragging = false;
+          document.removeEventListener("mousemove", onMouseMove);
+          document.removeEventListener("mouseup", onMouseUp);
+        };
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+      }
+    });
+  });
+
+  resizables.forEach((imgClick) => {
+    // Hvert element i resizables kaldes imgClick
+    imgClick.addEventListener("mousedown", () => {
+      // For hverimgClick kaldes imgClick ved Mousedown
+      // Reset alle billeders (img) z-index til 1
+      resizables.forEach((img) => (img.style.zIndex = 1));
+
+      // Det billede som er blevet klikket på (imgClick) får z-index 5
+      imgClick.style.zIndex = 5;
+    });
+  });
+</script>

@@ -1,0 +1,467 @@
+---
+import CursorToggle from "./Cursor_Toggle.astro";
+---
+
+<header class="class_header">
+  <nav class="menubar">
+    <div data-cursor="text" data-cursor-text="Home" class="left_row">
+      <a href="/index.html"
+        ><img
+          class="logo"
+          src="/imgs/logos/footer_logo_350.svg"
+          alt="logo"
+        /></a
+      >
+    </div>
+    <div class="right_row">
+      <CursorToggle />
+      <a data-cursor="fill" href="/news.html" class="visible_tab" id="news"
+        >News</a
+      >
+      <a
+        data-cursor="fill"
+        href="/program.html"
+        class="visible_tab"
+        id="program">Program</a
+      >
+      <a
+        data-cursor="fill"
+        href="/tickets.html"
+        class="visible_tab"
+        id="tickets">Tickets</a
+      >
+      <div class="ikon_holder">
+        <div data-cursor="text" data-cursor-text="Menu" class="menu_ikon">
+          <div class="line1"></div>
+          <div class="line2"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav>
+    <div class="burger">
+      <div class="burger_tab">
+        <a data-cursor="fill" href="/news.html" id="news">News</a>
+        <img class="news_img_1" src="/imgs/burger/orange_1.webp" alt="burger" />
+        <img class="news_img_2" src="/imgs/burger/orange_2.webp" alt="burger" />
+        <img class="news_img_3" src="/imgs/burger/orange_3.webp" alt="burger" />
+      </div>
+      <div class="burger_tab">
+        <a data-cursor="fill" href="/program.html" id="program">Program</a>
+        <img
+          class="program_img_1"
+          src="/imgs/burger/blue_1.webp"
+          alt="burger"
+        />
+        <img
+          class="program_img_2"
+          src="/imgs/burger/blue_2.webp"
+          alt="burger"
+        />
+        <img
+          class="program_img_3"
+          src="/imgs/burger/blue_3.webp"
+          alt="burger"
+        />
+      </div>
+      <div class="burger_tab">
+        <a data-cursor="fill" href="/tickets.html" id="tickets">Tickets</a>
+        <img
+          class="tickets_img_1"
+          src="/imgs/burger/white_1.webp"
+          alt="burger"
+        />
+        <img
+          class="tickets_img_2"
+          src="/imgs/burger/white_2.webp"
+          alt="burger"
+        />
+      </div>
+      <div class="burger_tab">
+        <a data-cursor="fill" href="/map.html" id="map">Map</a>
+        <img class="map_img_1" src="/imgs/burger/red_1.webp" alt="burger" />
+        <img class="map_img_2" src="/imgs/burger/red_2.webp" alt="burger" />
+        <img class="map_img_3" src="/imgs/burger/red_3.webp" alt="burger" />
+      </div>
+      <div class="mobile_img_container">
+        <div class="mobile_img"></div>
+      </div>
+      <div class="burger_tab">
+        <a
+          data-cursor="fill"
+          href="/practical_information.html"
+          id="practical_information">Practical Information</a
+        >
+        <img
+          class="practical_img_1"
+          src="/imgs/burger/green_1.webp"
+          alt="burger"
+        />
+        <img
+          class="practical_img_2"
+          src="/imgs/burger/green_2.webp"
+          alt="burger"
+        />
+      </div>
+      <div class="burger_tab">
+        <a data-cursor="fill" href="/about.html" id="about">About</a>
+        <img
+          class="about_img_1"
+          src="/imgs/burger/purple_1.webp"
+          alt="burger"
+        />
+        <img
+          class="about_img_2"
+          src="/imgs/burger/purple_2.webp"
+          alt="burger"
+        />
+      </div>
+    </div>
+  </nav>
+</header>
+<style>
+  /*HEADER*/
+
+  /*STYLING AF LUKKET MENU*/
+
+  .logo {
+    width: 200px;
+    height: auto;
+  }
+  .burger {
+    display: none;
+  }
+  .visible_tab {
+    display: none;
+  }
+
+  /*position og brede af header*/
+  header {
+    width: 100%;
+    position: fixed;
+    transition: 1s;
+    animation: 1s opacity ease-in-out;
+    z-index: 1000;
+    background-color: var(--off_white);
+  }
+
+  /*styling af tekst*/
+
+  /*styling der skal forblive ens i lukket/åben*/
+  a {
+    font-family: "GeneralSans", sans-serif;
+    font-style: normal;
+    color: var(--black);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  /*styling af åben burger*/
+  .burger_tab {
+    font-size: 40px;
+    font-weight: 500;
+  }
+
+  /**** MENUBAR *****/
+  .menubar {
+    display: flex;
+    height: 60px;
+    padding: 0px 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--Black, #060604); /*tilføj border*/
+    box-shadow: 0px 3px 10px 5px rgba(33, 34, 26, 0.2); /*tilføj shadow*/
+    z-index: 900;
+  }
+
+  .left_row {
+    height: 100%;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+  /*styling af højre side af menuen*/
+  .right_row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+    height: 100%; /*sørger for at linjerne er 100% højde - ved at gøre hele objekted 100% høj*/
+  }
+  /**** BURGER IKON OG KRYDS *****/
+
+  /*Styling af ikon holder - primært layout*/
+
+  .menu_ikon {
+    width: 40px;
+  }
+  .ikon_holder {
+    height: 100%; /*sørger for at linjerne er 100% højde - ved at gøre hele objekted 100% høj*/
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid var(--Black, #060604);
+  }
+  /*Styling af burgerikon*/
+  .line1,
+  .line2 {
+    width: 40px;
+    height: 2px;
+    background-color: var(--black);
+    margin: 15px 0;
+    transition: 0.4s; /*transition-lenght ved klik*/
+  }
+  /*Styling af kryds med klasse change*/
+  .change .line1 {
+    transform: rotate(45deg) translate(7px, 5px); /*Roter første linje*/
+  }
+
+  .change .line2 {
+    transform: rotate(-45deg) translate(7px, -5px); /* Roter anden linje linje*/
+  }
+
+  /*STYLING AF ÅBEN MENU*/
+
+  /*ændre header med klasse change*/
+
+  header.change {
+    background-color: #e8ffb0; /*skift baggrundsfarve*/
+    height: 100%; /*fyld hele skærmen*/
+    overflow: hidden;
+  }
+  header.change .menubar,
+  header.change .menubar .ikon_holder,
+  header.change .menubar .left_row {
+    border: none; /*fjern borders*/
+    box-shadow: none; /*fjern shadow*/
+  }
+
+  /****BURGER MENU ÅBEN****/
+
+  /*Layout*/
+  .change .burger {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 85.74%;
+  }
+  .burger_tab {
+    border-top: 1px solid var(--Black, #060604);
+    width: 100%;
+    height: 12.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mobile_img_container {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    border-top: 1px solid var(--Black, #060604);
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile_img {
+    height: 135px;
+    width: 255px;
+    color: red;
+    background-image: url(/imgs/burger/white_2.png);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: center;
+    width: 255px;
+    height: 135px;
+    flex-shrink: 0;
+    border-radius: 35px;
+  }
+
+  /*skrift opacity på hover*/
+
+  .burger:hover .burger_tab {
+    opacity: 0.5; /*sørg for at når man hover over burgeren får burger tabs 50% opacity */
+  }
+  .burger .burger_tab:hover {
+    opacity: 1; /*sørg for at hvis man hover over en burger tab bliver opacity 100% - Nu vil KUN en tab være helt sort */
+  }
+  .burger img {
+    display: none;
+    z-index: 100;
+  }
+  .ikon_holder {
+    padding-left: 20px !important;
+  }
+
+  /**** WEB *****/
+  @media (min-width: 1000px) {
+    .ikon_holder {
+      padding-left: 40px !important;
+    }
+    .mobile_img_container {
+      display: none;
+    }
+    .menubar {
+      padding: 0px 40px;
+    }
+    .left_row {
+      padding-right: 40px;
+    }
+
+    /*styling af åben burger*/
+    .burger_tab {
+      font-size: 80px;
+      height: 16.6%;
+    }
+
+    /*styling af visible_tabs*/
+    .visible_tab {
+      padding: 0px 40px;
+      border-left: 1px solid var(--Black, #060604);
+      height: 100%; /*sørger for at linjerne er 100% højde - ved at gøre hele objekted 100% høj*/
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .left_row {
+      border-right: 1px solid var(--Black, #060604);
+    }
+    /***BILLEDER***/
+    header.change .menubar .visible_tab {
+      display: none; /*fjern visible tabs*/
+    }
+    /*Billeder vises ved hover*/
+    .burger .burger_tab:hover img {
+      display: block; /*sørg for at billeder i den div der bliver hoveret på vises*/
+    }
+    /*Billeders positioner*/
+    .news_img_1 {
+      position: fixed;
+      top: 15%;
+      left: 12%;
+    }
+    .news_img_2 {
+      position: fixed;
+      top: 24%;
+      left: 75%;
+    }
+    .news_img_3 {
+      position: fixed;
+      top: 44%;
+      left: 5%;
+    }
+    .program_img_1 {
+      position: fixed;
+      top: 15%;
+      left: 12%;
+    }
+    .program_img_2 {
+      position: fixed;
+      top: 54%;
+      left: 5%;
+    }
+    .program_img_3 {
+      position: fixed;
+      top: 24%;
+      left: 75%;
+    }
+    .tickets_img_1 {
+      position: fixed;
+      top: 31%;
+      left: 72%;
+    }
+    .tickets_img_2 {
+      position: fixed;
+      top: 19%;
+      left: 10%;
+    }
+    .map_img_1 {
+      position: fixed;
+      top: 14%;
+      left: 70%;
+    }
+    .map_img_2 {
+      position: fixed;
+      top: 32%;
+      left: 10%;
+    }
+    .map_img_3 {
+      position: fixed;
+      top: 67%;
+      left: 84%;
+    }
+    .practical_img_1 {
+      position: fixed;
+      top: 16%;
+      left: 20%;
+    }
+    .practical_img_2 {
+      position: fixed;
+      top: 24%;
+      left: 74%;
+    }
+    .practical_img_3 {
+      position: fixed;
+      top: 55%;
+      left: 2%;
+    }
+    .about_img_1 {
+      position: fixed;
+      top: 37%;
+      left: 2%;
+    }
+    .about_img_2 {
+      position: fixed;
+      top: 17%;
+      left: 74%;
+    }
+  }
+</style>
+<script>
+  // Constants
+  const icon = document.querySelector(".menu_ikon");
+  const header = document.querySelector("header");
+  const burger = document.querySelector(".burger"); // fixed: should be ".burger" if it's a class
+  const imageHolder = document.querySelector(".mobile_img");
+
+  const imageUrls = [
+    "/imgs/burger/white_1.webp",
+    "/imgs/burger/orange_3.webp",
+    "/imgs/burger/green_3.webp",
+    "/imgs/burger/purple_2.webp",
+    "/imgs/burger/red_2.webp",
+  ];
+
+  let currentIndex = 0;
+  let intervalId = null;
+
+  // Event listener
+  icon.addEventListener("click", burgermenu);
+
+  function burgermenu() {
+    console.log("burger");
+    icon.classList.toggle("change");
+    header.classList.toggle("change");
+    burger.classList.toggle("change");
+
+    const isOpen = burger.classList.contains("change");
+
+    if (isOpen && !intervalId) {
+      // Start rotating images
+      intervalId = setInterval(() => {
+        currentIndex = (currentIndex + 1) % imageUrls.length;
+        imageHolder.style.backgroundImage = `url('${imageUrls[currentIndex]}')`;
+      }, 1000); // every 1 second
+    } else if (!isOpen && intervalId) {
+      // Stop rotating if menu is closed
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  }
+</script>

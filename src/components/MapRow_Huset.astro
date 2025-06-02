@@ -1,0 +1,186 @@
+---
+import "../style/styles.css";
+import Button from "./Button.astro";
+import LinkButton from "./LinkButton.astro";
+import MapVenueSymbolsGrid from "./Map_VenueSymbols_Grid.astro";
+import X from "./X.astro";
+---
+
+<section class="map_row_wrapper" data-venue="huset">
+  <section data-cursor="fill" class="map_row_closed">
+    <h2>Huset</h2>
+    <div class="arrow">
+      <img src="/imgs/Program/numbers/arrow.svg" alt="arrow" />
+    </div>
+  </section>
+
+  <section class="map_row_open hidden">
+    <div class="venue_and_x_flex">
+      <h2>Huset</h2>
+      <X />
+    </div>
+    <div class="address_and_direction_btn_flex">
+      <div class="map_row_open_address_flex">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="15"
+          height="20"
+          viewBox="0 0 15 20"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M10.8921 17.2982C10.0034 18.2959 8.96838 19.1895 7.80618 19.9121C7.66309 20.0196 7.46913 20.0326 7.31014 19.9284C5.59309 18.8103 4.15107 17.4675 3.0175 16.0075C1.45306 13.9991 0.468936 11.7726 0.131884 9.62739C-0.211528 7.45293 0.109626 5.35985 1.16689 3.65902C1.58343 2.98682 2.11604 2.37485 2.76471 1.84588C4.256 0.630072 5.95876 -0.0128268 7.65674 0.000193938C9.29112 0.0132147 10.9048 0.636582 12.2992 1.94028C12.7888 2.39601 13.2006 2.91846 13.5377 3.48487C14.6744 5.40217 14.9193 7.84681 14.42 10.324C13.9272 12.7719 12.703 15.2589 10.8921 17.2933V17.2982ZM7.3324 3.86735C9.34836 3.86735 10.9812 5.54051 10.9812 7.60267C10.9812 9.66645 9.34677 11.338 7.3324 11.338C5.31645 11.338 3.68365 9.66645 3.68365 7.60267C3.68206 5.53888 5.31645 3.86735 7.3324 3.86735Z"
+            fill="#060604"></path>
+        </svg>
+        <p>Rådhusstræde 13, 1466 København K</p>
+      </div>
+      <LinkButton
+        buttonClass="primary"
+        buttonText="Open in Google Maps"
+        buttonLink="https://maps.app.goo.gl/HFiCuJQ8xSC9fsgz7"
+      />
+    </div>
+
+    <div class="img_and_symbolgrid">
+      <img src="/imgs/map/venue_huset.svg" alt="Map over the Huset Venue" />
+      <MapVenueSymbolsGrid venue="huset" />
+    </div>
+    <p>
+      For more information about this venue visit <a
+        data-cursor="fill"
+        class="linktext"
+        href="https://huset.dk">their website</a
+      >
+    </p>
+  </section>
+</section>
+
+<style>
+  /* ------------------MOBILE------------------ */
+  .linktext {
+    text-decoration: underline;
+  }
+  .map_row_wrapper {
+    border-color: var(--black);
+    border-width: 1px;
+    border-style: solid none;
+  }
+  .map_row_closed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: auto; */
+    padding: 20px;
+
+    .arrow {
+      height: 25px;
+      width: 25px;
+    }
+    .arrow img {
+      width: 25px;
+    }
+  }
+  .map_row_open {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    .venue_and_x_flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .address_and_direction_btn_flex {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .map_row_open_address_flex {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .img_and_symbolgrid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+  }
+
+  /* ------------------DESKTOP------------------ */
+
+  @media (min-width: 800px) {
+    h2 {
+      font-size: 2.5rem;
+    }
+    .map_row_wrapper {
+      border-top-style: none;
+    }
+    .map_row_closed {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px;
+
+      .arrow {
+        height: 35px;
+        width: 35px;
+      }
+      .arrow img {
+        width: 35px;
+      }
+    }
+    .map_row_open {
+      padding: 40px;
+      gap: 2rem;
+    }
+
+    .img_and_symbolgrid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr;
+      .map_venue_symbol_grid {
+        grid-column: 1;
+        grid-row: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      img {
+        grid-column: 2;
+        grid-row: 1;
+      }
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const allMapRows = document.querySelectorAll(".map_row_wrapper");
+
+    allMapRows.forEach((mapRowWrapper) => {
+      const arrow = mapRowWrapper.querySelector(".arrow");
+      const ex = mapRowWrapper.querySelector(".ex");
+      const openMapRow = mapRowWrapper.querySelector(".map_row_open");
+      const closedMapRow = mapRowWrapper.querySelector(".map_row_closed");
+
+      arrow.addEventListener("click", () => {
+        closedMapRow.classList.add("hidden");
+        openMapRow.classList.remove("hidden");
+      });
+
+      ex.addEventListener("click", () => {
+        openMapRow.classList.add("hidden");
+        closedMapRow.classList.remove("hidden");
+      });
+    });
+  });
+</script>
