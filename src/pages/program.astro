@@ -16,7 +16,6 @@ const data = await fetch("https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/event
 
 // trækker alle .type ud af event objekterne inde i data arrayet og putter dem i en const
 const allEventTypes = data.flatMap((event) => event.type);
-console.log(data.map((event) => event.type));
 // fjerner alle duplikater af eventTypes og putter dem i en const
 const uniqueEventTypes = [...new Set(allEventTypes)];
 
