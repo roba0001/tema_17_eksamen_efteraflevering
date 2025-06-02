@@ -81,6 +81,14 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
             })
           }
         </Dropdown>
+
+        <img
+          data-cursor="text"
+          data-cursor-text="Reset Filters"
+          class="reset_symbol"
+          src="/imgs/Program/reset.svg"
+          alt="Reset button"
+        />
       </div>
 
       <div class="searchbar_wrapper">
@@ -198,6 +206,11 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
     height: 15px;
   }
 
+  .reset_symbol {
+    width: 20px;
+    height: 20px;
+  }
+
   input {
     appearance: none;
     -webkit-appearance: none;
@@ -245,86 +258,46 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
 </style>
 
 <script type="module">
-  // -----------------SØGEFUNKTION-----------------
   const input = document.getElementById("searchInput");
+  const eventTopicSelector = document.getElementById("eventTopicSelector");
+  const eventTypeSelector = document.getElementById("eventTypeSelector");
+  const eventVenueSelector = document.getElementById("eventVenueSelector");
+  const resetBtn = document.querySelector(".reset_symbol"); // FIXED
   const cards = document.querySelectorAll(".program_card");
 
-  input.addEventListener("input", () => {
-    eventTopicSelector.value = "allTopics";
-    eventVenueSelector.value = "allVenues";
-    eventTypeSelector.value = "allEventTypes";
+  input.addEventListener("input", applyFilters);
+  eventTopicSelector.addEventListener("change", applyFilters);
+  eventTypeSelector.addEventListener("change", applyFilters);
+  eventVenueSelector.addEventListener("change", applyFilters);
+  resetBtn.addEventListener("click", resetFilters); // NEW
+
+  function applyFilters() {
     const query = input.value.toLowerCase();
+    const selectedTopic = eventTopicSelector.value;
+    const selectedType = eventTypeSelector.value;
+    const selectedVenue = eventVenueSelector.value;
 
     cards.forEach((card) => {
-      const title = card.dataset.title;
-      card.style.display = title.includes(query) ? "block" : "none";
-    });
-  });
+      const title = card.dataset.title.toLowerCase();
+      const cardTopics = card.dataset.topic?.split(",") || [];
+      const cardTypes = card.dataset.type?.split(",") || [];
+      const cardVenues = card.dataset.venue?.split(",") || [];
 
-  // -----------------FILTRERINGSFUNKTION-----------------
-  // topic filter
-  const eventTopicSelector = document.getElementById("eventTopicSelector");
+      const matchesSearch = title.includes(query);
+      const matchesTopic = selectedTopic === "allTopics" || cardTopics.includes(selectedTopic);
+      const matchesType = selectedType === "allEventTypes" || cardTypes.includes(selectedType);
+      const matchesVenue = selectedVenue === "allVenues" || cardVenues.includes(selectedVenue);
 
-  eventTopicSelector.addEventListener("change", function () {
-    const selectedTopic = this.value;
-    eventTypeSelector.value = "allEventTypes";
-    eventVenueSelector.value = "allVenues";
-    filterTopics(selectedTopic);
-  });
-
-  function filterTopics(selectedTopic) {
-    cards.forEach((card) => {
-      const cardTopic = card.dataset.topic.split(",");
-
-      if (selectedTopic === "allTopics") {
-        card.style.display = "block";
-      } else {
-        card.style.display = cardTopic.includes(selectedTopic) ? "block" : "none";
-      }
+      card.style.display =
+        matchesSearch && matchesTopic && matchesType && matchesVenue ? "block" : "none";
     });
   }
 
-  // event type filter
-  const eventTypeSelector = document.getElementById("eventTypeSelector");
-
-  eventTypeSelector.addEventListener("change", function () {
-    const selectedEventType = this.value;
+  function resetFilters() {
+    input.value = "";
     eventTopicSelector.value = "allTopics";
-    eventVenueSelector.value = "allVenues";
-    filterEventType(selectedEventType);
-  });
-
-  function filterEventType(selectedEventType) {
-    cards.forEach((card) => {
-      const cardEventType = card.dataset.type;
-      if (selectedEventType === "allEventTypes") {
-        card.style.display = "block";
-      } else {
-        card.style.display = selectedEventType === cardEventType ? "block" : "none";
-      }
-    });
-  }
-
-  // venue filter
-  const eventVenueSelector = document.getElementById("eventVenueSelector");
-
-  eventVenueSelector.addEventListener("change", function () {
-    const selectedVenue = this.value;
-    eventTopicSelector.value = "allTopics";
-
     eventTypeSelector.value = "allEventTypes";
-
-    filterVenues(selectedVenue);
-  });
-
-  function filterVenues(selectedVenue) {
-    cards.forEach((card) => {
-      const cardVenue = card.dataset.venue;
-      if (selectedVenue === "allVenues") {
-        card.style.display = "block";
-      } else {
-        card.style.display = selectedVenue === cardVenue ? "block" : "none";
-      }
-    });
+    eventVenueSelector.value = "allVenues";
+    applyFilters(); // Reapply filters after reset
   }
 </script>
