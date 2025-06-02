@@ -10,7 +10,8 @@ import Button from "./Button.astro";
     <p>( {address} )</p>
     <p>{about}</p>
     <p>{more}</p>
-    <a href={maps_link}><Button button_class="primary" text="Open in Maps" /></a
+    <a href={maps_link} data-cursor="fill"
+      ><Button button_class="primary" text="Open in Maps" /></a
     >
   </div>
   <div id="picture">
@@ -38,7 +39,7 @@ import Button from "./Button.astro";
     #container {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding: 40px;
+      padding: 10px 40px;
       gap: 20px;
       align-items: center;
     }

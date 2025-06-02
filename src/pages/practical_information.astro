@@ -13,7 +13,7 @@ import "../style/styles.css";
   <div class="practical_container">
     <div class="left_side">
       <h1>Practical Information</h1>
-      <div class="tabs">
+      <div class="tabs" data-cursor="fill">
         <div id="cancellation">
           <Text_And_Arrow text="Cancellation Policy" />
         </div>
@@ -160,7 +160,9 @@ import "../style/styles.css";
       allInfos.forEach((info) => info.classList.remove("visible"));
 
       // Show only those matching the tab
-      const toShow = document.querySelectorAll(`.practical_info[data-tab="${tabName}"]`);
+      const toShow = document.querySelectorAll(
+        `.practical_info[data-tab="${tabName}"]`
+      );
       toShow.forEach((el) => el.classList.add("visible"));
     });
   });
