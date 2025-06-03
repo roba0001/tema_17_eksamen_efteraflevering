@@ -4,7 +4,7 @@ import Gradient from "../components/Gradient.astro";
 import "../style/styles.css";
 import TopicsHome from "../components/Topics_home.astro";
 import Button from "../components/Button.astro";
-import Carrusel from "../components/Carrusel.astro";
+import SpeakerCarousel from "../components/Speaker_carousel.astro";
 import Searchbar from "../components/Searchbar.astro";
 const data = await fetch(
   "https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/events",
@@ -117,9 +117,8 @@ const data = await fetch(
     </div>
   </div>
   <TopicsHome />
-
-  <!-- <Carrusel />
-  <Searchbar /> -->
+  <SpeakerCarousel />
+  <!-- <Searchbar /> -->
 </Skelet>
 
 <style>
