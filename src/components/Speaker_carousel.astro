@@ -8,6 +8,7 @@ const speakers = [
     link: "/program/ai_tools_for_creatives",
     about:
       "Arjun Malik is an AI strategist developing creative tools that help designers work faster, smarter, and with more freedom.",
+    about2: "Meet Arjun Malik at his Talk 'AI Tools for Creatives'.",
   },
   {
     name: "Elena Motta",
@@ -15,6 +16,7 @@ const speakers = [
     link: "/program/3d-objects-in-motion",
     about:
       "Elena Motta is a 3D animator and motion director at VoxelWorks, specializing in cinematic motion graphics.",
+    about2: "Meet Elena Motta at her Workshop '3D Objects in Motion'.",
   },
   {
     name: "Jules Renner",
@@ -22,6 +24,8 @@ const speakers = [
     link: "/program/3d_modelling_for_product_imagery",
     about:
       "Jules Renner is lead 3D artist at FormShift Studio, crafting product visuals for brands in tech, fashion, and beauty.",
+    about2:
+      "Meet Jules Renner at her Workshop '3D Modelling for Product Imagery'.",
   },
   {
     name: "Lena Alvarez",
@@ -29,6 +33,8 @@ const speakers = [
     link: "/program/the_future_of_animation_in_advertising_and_media",
     about:
       "Lena Alvarez is a creative director at Shifted Studios with 15+ years animating for Nike, Samsung, Mercedes-Benz, and Netflix.",
+    about2:
+      "Meet Lena Alvarez at her Talk 'The Future of Animation in Advertising and Media'.",
   },
   {
     name: "Nico Delgado",
@@ -36,6 +42,8 @@ const speakers = [
     link: "/program/mastering_video_production_with_a_limited_budget",
     about:
       "Nico Delgado is a director and video producer known for crafting high-impact campaigns on minimal budgets for brands like Nike and Red Bull.",
+    about2:
+      "Meet Nico Delgado at his Talk 'Mastering Video Production with a Limited Budget'.",
   },
   {
     name: "Sam Taylor",
@@ -43,6 +51,8 @@ const speakers = [
     link: "/program/digital_storytelling_in_the_age_of_short_attention_spans",
     about:
       "Sam Taylor is a filmmaker and creative director known for crafting engaging short-form videos for Spotify, Airbnb, and more.",
+    about2:
+      "Meet Sam Taylor at his Talk 'Digital Storytelling in the Age of Short Attention Spans'.",
   },
   {
     name: "Takumi Hara",
@@ -50,6 +60,7 @@ const speakers = [
     link: "/program/ai-driven_character_design",
     about:
       "Takumi Hara and Eloise Thorne are pioneering animators using AI to innovate character design and animation production.",
+    about2: "Meet Takumi Hara at her Workshop 'AI-driven Character Design'.",
   },
 ];
 import Gradient from "./Gradient.astro";
@@ -72,6 +83,7 @@ import Gradient from "./Gradient.astro";
             <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <p class="about">{speaker.about2}</p>
               <Button
                 data-cursor="fill"
                 class="button"
@@ -96,6 +108,7 @@ import Gradient from "./Gradient.astro";
             <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <p class="about">{speaker.about2}</p>
               <Button
                 data-cursor="fill"
                 class="button"
@@ -121,6 +134,7 @@ import Gradient from "./Gradient.astro";
             <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <p class="about">{speaker.about2}</p>
               <Button
                 data-cursor="fill"
                 class="button"
@@ -145,6 +159,7 @@ import Gradient from "./Gradient.astro";
             <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <p class="about">{speaker.about2}</p>
               <Button
                 data-cursor="fill"
                 class="button"
@@ -170,6 +185,7 @@ import Gradient from "./Gradient.astro";
             <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <p class="about">{speaker.about2}</p>
               <Button
                 data-cursor="fill"
                 class="button"
@@ -194,6 +210,7 @@ import Gradient from "./Gradient.astro";
             <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <p class="about">{speaker.about2}</p>
               <Button
                 data-cursor="fill"
                 class="button"
@@ -274,7 +291,7 @@ import Gradient from "./Gradient.astro";
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: 175px;
+    max-width: 200px;
     text-align: left;
     gap: 20px;
   }
@@ -287,13 +304,16 @@ import Gradient from "./Gradient.astro";
       margin-top: 40px;
     }
     .carousel {
-      margin-top: 120px;
+      margin-top: 200px;
     }
     .text {
       position: absolute;
-      top: -5%;
-      left: 50%;
+      top: 20px;
+      left: 25px;
       display: none;
+    }
+    .carousel-item.active .text {
+      max-width: 300px;
     }
   }
 </style>
