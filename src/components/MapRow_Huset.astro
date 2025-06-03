@@ -15,7 +15,7 @@ import X from "./X.astro";
   </section>
 
   <section class="map_row_open hidden">
-    <div class="venue_and_x_flex">
+    <div data-cursor="fill" class="venue_and_x_flex">
       <h2>Huset</h2>
       <X />
     </div>
@@ -161,26 +161,3 @@ import X from "./X.astro";
     display: none;
   }
 </style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const allMapRows = document.querySelectorAll(".map_row_wrapper");
-
-    allMapRows.forEach((mapRowWrapper) => {
-      const arrow = mapRowWrapper.querySelector(".arrow");
-      const ex = mapRowWrapper.querySelector(".ex");
-      const openMapRow = mapRowWrapper.querySelector(".map_row_open");
-      const closedMapRow = mapRowWrapper.querySelector(".map_row_closed");
-
-      arrow.addEventListener("click", () => {
-        closedMapRow.classList.add("hidden");
-        openMapRow.classList.remove("hidden");
-      });
-
-      ex.addEventListener("click", () => {
-        openMapRow.classList.add("hidden");
-        closedMapRow.classList.remove("hidden");
-      });
-    });
-  });
-</script>

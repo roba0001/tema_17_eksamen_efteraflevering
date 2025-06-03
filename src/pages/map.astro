@@ -262,37 +262,49 @@ import Gradient from "../components/Gradient.astro";
     const pins = document.querySelectorAll(".map_pin");
     const mapRowWrappers = document.querySelectorAll(".map_row_wrapper");
 
+    // Handle pin click (toggle row)
     pins.forEach((pin) => {
       pin.addEventListener("click", () => {
         const venue = pin.dataset.venue;
 
-        // Toggle accordions
         mapRowWrappers.forEach((wrapper) => {
           const isTarget = wrapper.dataset.venue === venue;
           const closed = wrapper.querySelector(".map_row_closed");
           const open = wrapper.querySelector(".map_row_open");
 
           if (isTarget) {
-            closed.classList.add("hidden");
-            open.classList.remove("hidden");
+            const isOpen = !open.classList.contains("hidden");
+
+            if (isOpen) {
+              // Row is open, so close it and deactivate pin
+              closed.classList.remove("hidden");
+              open.classList.add("hidden");
+              pin.classList.remove("active");
+            } else {
+              // Row is closed, so open it and activate pin
+              closed.classList.add("hidden");
+              open.classList.remove("hidden");
+
+              // Deactivate all pins first
+              pins.forEach((p) => p.classList.remove("active"));
+              pin.classList.add("active");
+            }
           } else {
+            // Close all other rows
             closed.classList.remove("hidden");
             open.classList.add("hidden");
           }
         });
-
-        // Handle active pin styling
-        pins.forEach((p) => p.classList.remove("active"));
-        pin.classList.add("active");
       });
     });
 
+    // Handle row click (to open)
     mapRowWrappers.forEach((wrapper) => {
       const closed = wrapper.querySelector(".map_row_closed");
+      const open = wrapper.querySelector(".map_row_open");
+      const venue = wrapper.dataset.venue;
 
       closed.addEventListener("click", () => {
-        const venue = wrapper.dataset.venue;
-
         mapRowWrappers.forEach((w) => {
           const isTarget = w.dataset.venue === venue;
           const wClosed = w.querySelector(".map_row_closed");
@@ -307,7 +319,7 @@ import Gradient from "../components/Gradient.astro";
           }
         });
 
-        // matcher active pin til den åbne accoridions venue
+        // Highlight matching pin
         pins.forEach((pin) => {
           if (pin.dataset.venue === venue) {
             pin.classList.add("active");
@@ -316,6 +328,22 @@ import Gradient from "../components/Gradient.astro";
           }
         });
       });
+
+      // Handle X click (to close)
+      const xButton = wrapper.querySelector(".venue_and_x_flex");
+      if (xButton) {
+        xButton.addEventListener("click", () => {
+          closed.classList.remove("hidden");
+          open.classList.add("hidden");
+
+          // Remove active class from pin
+          pins.forEach((pin) => {
+            if (pin.dataset.venue === venue) {
+              pin.classList.remove("active");
+            }
+          });
+        });
+      }
     });
   });
 </script>
