@@ -1,18 +1,61 @@
 ---
 import { useState, useEffect } from "react";
 const speakers = [
-  { name: "Arjun Malik", image: "/arjun_malik.webp" },
-  { name: "Elena Motta", image: "/elena_motta.webp" },
-  { name: "Jules Renner", image: "/jules_renner.webp" },
-  { name: "Lena Alvarez", image: "/lena_alvarez.webp" },
-  { name: "Nico Delgado", image: "/nico_delgado.webp" },
-  { name: "Sam Taylor", image: "/sam_taylor.webp" },
-  { name: "Takumi Hara", image: "/takumi_hara.webp" },
+  {
+    name: "Arjun Malik",
+    image: "/arjun_malik.webp",
+    link: "/program/ai_tools_for_creatives",
+    about:
+      "Arjun Malik is an AI strategist developing creative tools that help designers work faster, smarter, and with more freedom.",
+  },
+  {
+    name: "Elena Motta",
+    image: "/elena_motta.webp",
+    link: "/program/3d-objects-in-motion",
+    about:
+      "Elena Motta is a 3D animator and motion director at VoxelWorks, specializing in cinematic motion graphics.",
+  },
+  {
+    name: "Jules Renner",
+    image: "/jules_renner.webp",
+    link: "/program/3d_modelling_for_product_imagery",
+    about:
+      "Jules Renner is lead 3D artist at FormShift Studio, crafting product visuals for brands in tech, fashion, and beauty.",
+  },
+  {
+    name: "Lena Alvarez",
+    image: "/lena_alvarez.webp",
+    link: "/program/the_future_of_animation_in_advertising_and_media",
+    about:
+      "Lena Alvarez is a creative director at Shifted Studios with 15+ years animating for Nike, Samsung, Mercedes-Benz, and Netflix.",
+  },
+  {
+    name: "Nico Delgado",
+    image: "/nico_delgado.webp",
+    link: "/program/mastering_video_production_with_a_limited_budget",
+    about:
+      "Nico Delgado is a director and video producer known for crafting high-impact campaigns on minimal budgets for brands like Nike and Red Bull.",
+  },
+  {
+    name: "Sam Taylor",
+    image: "/sam_taylor.webp",
+    link: "/program/digital_storytelling_in_the_age_of_short_attention_spans",
+    about:
+      "Sam Taylor is a filmmaker and creative director known for crafting engaging short-form videos for Spotify, Airbnb, and more.",
+  },
+  {
+    name: "Takumi Hara",
+    image: "/takumi_hara.webp",
+    link: "/program/ai-driven_character_design",
+    about:
+      "Takumi Hara and Eloise Thorne are pioneering animators using AI to innovate character design and animation production.",
+  },
 ];
 import Gradient from "./Gradient.astro";
 ---
 
 <Gradient gradient_class="index3" />
+<h3>( Speakers )</h3>
 <div class="carousel-container">
   <ul id="carousel" class="carousel">
     <!-- Cloned end items at start -->
@@ -24,7 +67,12 @@ import Gradient from "./Gradient.astro";
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
-          <p>{speaker.name}</p>
+          <a href={speaker.link}>
+            <div class="text" data-cursor="text" data-cursor-text="View event">
+              <p class="name">{speaker.name}</p>
+              <p class="about">{speaker.about}</p>
+            </div>
+          </a>
         </li>
       ))
     }
@@ -37,7 +85,12 @@ import Gradient from "./Gradient.astro";
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
-          <p>{speaker.name}</p>
+          <a href={speaker.link}>
+            <div class="text" data-cursor="text" data-cursor-text="View event">
+              <p class="name">{speaker.name}</p>
+              <p class="about">{speaker.about}</p>
+            </div>
+          </a>
         </li>
       ))
     }
@@ -51,7 +104,12 @@ import Gradient from "./Gradient.astro";
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
-          <p>{speaker.name}</p>
+          <a href={speaker.link}>
+            <div class="text" data-cursor="text" data-cursor-text="View event">
+              <p class="name">{speaker.name}</p>
+              <p class="about">{speaker.about}</p>
+            </div>
+          </a>
         </li>
       ))
     }
@@ -64,7 +122,12 @@ import Gradient from "./Gradient.astro";
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
-          <p>{speaker.name}</p>
+          <a href={speaker.link}>
+            <div class="text" data-cursor="text" data-cursor-text="View event">
+              <p class="name">{speaker.name}</p>
+              <p class="about">{speaker.about}</p>
+            </div>
+          </a>
         </li>
       ))
     }
@@ -78,7 +141,12 @@ import Gradient from "./Gradient.astro";
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
-          <p>{speaker.name}</p>
+          <a href={speaker.link}>
+            <div class="text" data-cursor="text" data-cursor-text="View event">
+              <p class="name">{speaker.name}</p>
+              <p class="about">{speaker.about}</p>
+            </div>
+          </a>
         </li>
       ))
     }
@@ -91,7 +159,12 @@ import Gradient from "./Gradient.astro";
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
-          <p>{speaker.name}</p>
+          <a href={speaker.link}>
+            <div class="text" data-cursor="text" data-cursor-text="View event">
+              <p class="name">{speaker.name}</p>
+              <p class="about">{speaker.about}</p>
+            </div>
+          </a>
         </li>
       ))
     }
@@ -99,6 +172,9 @@ import Gradient from "./Gradient.astro";
 </div>
 
 <style>
+  h3 {
+    margin-left: 40px;
+  }
   .carousel-container {
     width: 100%;
     height: 90vh;
@@ -142,25 +218,46 @@ import Gradient from "./Gradient.astro";
     opacity: 0.5;
   }
 
-  .carousel-item p {
-    margin-top: 0.5rem;
+  .text {
     position: absolute;
-    top: 20%;
+    top: 17%;
     left: 57%;
     display: none;
   }
-
+  p.name {
+    font-weight: 700 !important;
+  }
   /* Highlight the center item */
   .carousel-item.active img {
     height: 500px;
     opacity: 1;
     transition: 0.5s;
   }
-  .carousel-item.active p {
-    display: block;
+  .carousel-item.active .text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 175px;
+    text-align: left;
+    gap: 20px;
   }
   .carousel-item.active:hover img {
     scale: 1.02;
+  }
+  @media (max-width: 800px) {
+    h3 {
+      margin-left: 20px;
+      margin-top: 40px;
+    }
+    .carousel {
+      margin-top: 120px;
+    }
+    .text {
+      position: absolute;
+      top: 3%;
+      left: 50%;
+      display: none;
+    }
   }
 </style>
 <script>
