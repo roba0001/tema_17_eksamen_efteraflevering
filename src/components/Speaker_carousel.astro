@@ -20,6 +20,7 @@ import Gradient from "./Gradient.astro";
       speakers.slice(-3).map((speaker) => (
         <li class="carousel-item" key={`clone-start-${speaker.name}`}>
           <img
+            data-cursor="fill"
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
@@ -32,6 +33,7 @@ import Gradient from "./Gradient.astro";
       speakers.slice(-3).map((speaker) => (
         <li class="carousel-item" key={`clone-start-${speaker.name}`}>
           <img
+            data-cursor="fill"
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
@@ -45,6 +47,7 @@ import Gradient from "./Gradient.astro";
       speakers.map((speaker) => (
         <li class="carousel-item" key={speaker.name}>
           <img
+            data-cursor="fill"
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
@@ -57,6 +60,7 @@ import Gradient from "./Gradient.astro";
       speakers.map((speaker) => (
         <li class="carousel-item" key={speaker.name}>
           <img
+            data-cursor="fill"
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
@@ -70,6 +74,7 @@ import Gradient from "./Gradient.astro";
       speakers.slice(0, 3).map((speaker) => (
         <li class="carousel-item" key={`clone-end-${speaker.name}`}>
           <img
+            data-cursor="fill"
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
@@ -82,6 +87,7 @@ import Gradient from "./Gradient.astro";
       speakers.slice(0, 3).map((speaker) => (
         <li class="carousel-item" key={`clone-end-${speaker.name}`}>
           <img
+            data-cursor="fill"
             src={`/imgs/speakers/caroussel/${speaker.image}`}
             alt={speaker.name}
           />
@@ -90,11 +96,6 @@ import Gradient from "./Gradient.astro";
       ))
     }
   </ul>
-</div>
-
-<div class="arrows">
-  <button id="prevBtn" class="arrow left">‹</button>
-  <button id="nextBtn" class="arrow right">›</button>
 </div>
 
 <style>
@@ -149,6 +150,10 @@ import Gradient from "./Gradient.astro";
   .carousel-item.active img {
     height: 500px;
     opacity: 1;
+    transition: 0.5s;
+  }
+  .carousel-item.active:hover img {
+    scale: 1.02;
   }
 </style>
 <script>
@@ -157,7 +162,6 @@ import Gradient from "./Gradient.astro";
   const realItemCount = items.length / 3; // total = clonesStart + real + clonesEnd
   const itemWidth = items[0].offsetWidth + 32; // 32 = ~2rem gap
 
-  // Scroll to the first real item on load (to start centered)
   carousel.scrollLeft = realItemCount * itemWidth;
 
   function updateActiveItem() {
@@ -174,7 +178,6 @@ import Gradient from "./Gradient.astro";
   }
 
   function handleLoop() {
-    // Remove all looping logic, just update active class
     updateActiveItem();
   }
 
@@ -182,6 +185,22 @@ import Gradient from "./Gradient.astro";
 
   window.addEventListener("resize", () => {
     carousel.scrollLeft = realItemCount * itemWidth;
+  });
+
+  items.forEach((item) => {
+    const img = item.querySelector("img");
+    img.style.cursor = "pointer";
+
+    img.addEventListener("click", () => {
+      const itemLeft = item.offsetLeft;
+      const itemCenter = itemLeft + item.offsetWidth / 2;
+      const targetScrollLeft = itemCenter - carousel.offsetWidth / 2;
+
+      carousel.scrollTo({
+        left: targetScrollLeft,
+        behavior: "smooth",
+      });
+    });
   });
 
   updateActiveItem();
