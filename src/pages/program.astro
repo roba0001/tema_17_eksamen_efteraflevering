@@ -255,6 +255,21 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
       gap: 2rem;
     }
   }
+
+  /* open and visible */
+  .visible {
+    display: block;
+
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+
+  .closing {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-2rem);
+  }
 </style>
 
 <script type="module">
@@ -291,6 +306,24 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
       card.style.display =
         matchesSearch && matchesTopic && matchesType && matchesVenue ? "block" : "none";
     });
+
+    document.querySelectorAll(".program_row_wrapper").forEach((wrapper) => {
+      const cards = wrapper.querySelectorAll(".program_card");
+      const visibleCards = Array.from(cards).filter((card) => card.style.display !== "none");
+
+      const openRow = wrapper.querySelector(".program_row_open");
+      const closedRow = wrapper.querySelector(".program_row_closed");
+
+      if (visibleCards.length === 0) {
+        openRow.classList.remove("visible");
+        openRow.classList.remove("closing");
+        closedRow.classList.add("visible");
+      } else {
+        openRow.classList.add("visible");
+        closedRow.classList.remove("visible");
+        closedRow.classList.remove("closing");
+      }
+    });
   }
 
   function resetFilters() {
@@ -298,6 +331,17 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
     eventTopicSelector.value = "allTopics";
     eventTypeSelector.value = "allEventTypes";
     eventVenueSelector.value = "allVenues";
+
+    // For every row wrapper, open the row and hide closed
+    document.querySelectorAll(".program_row_wrapper").forEach((wrapper) => {
+      const openRow = wrapper.querySelector(".program_row_open");
+      const closedRow = wrapper.querySelector(".program_row_closed");
+
+      closedRow.classList.remove("visible");
+      closedRow.classList.remove("closing");
+      openRow.classList.add("visible");
+    });
+
     applyFilters(); // Reapply filters after reset
   }
 </script>

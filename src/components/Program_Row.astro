@@ -19,14 +19,14 @@ const data = await fetch(
 ---
 
 <section class="program_row_wrapper">
-  <section class="program_row_closed visible">
+  <section class="program_row_closed">
     <h1 data-cursor="fill">{h1Date}</h1>
     <div data-cursor="fill" class="arrow">
       <img src="/imgs/Program/numbers/arrow.svg" alt="arrow" />
     </div>
   </section>
 
-  <section class="program_row_open">
+  <section class="program_row_open visible">
     <img
       class="stretched_number_svg"
       src={`/imgs/Program/numbers/${stretchedNumber}.svg`}
@@ -189,7 +189,6 @@ const data = await fetch(
     transform: translateY(0);
   }
 
-  /* smoother closing animation */
   .closing {
     opacity: 0;
     max-height: 0;
