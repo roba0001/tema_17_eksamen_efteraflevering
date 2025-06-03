@@ -1,4 +1,5 @@
 ---
+import Button from "../components/Button.astro";
 import { useState, useEffect } from "react";
 const speakers = [
   {
@@ -68,9 +69,15 @@ import Gradient from "./Gradient.astro";
             alt={speaker.name}
           />
           <a href={speaker.link}>
-            <div class="text" data-cursor="text" data-cursor-text="View event">
+            <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <Button
+                data-cursor="fill"
+                class="button"
+                text="View event"
+                button_class="primary"
+              />
             </div>
           </a>
         </li>
@@ -86,9 +93,15 @@ import Gradient from "./Gradient.astro";
             alt={speaker.name}
           />
           <a href={speaker.link}>
-            <div class="text" data-cursor="text" data-cursor-text="View event">
+            <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <Button
+                data-cursor="fill"
+                class="button"
+                text="View event"
+                button_class="primary"
+              />
             </div>
           </a>
         </li>
@@ -105,9 +118,15 @@ import Gradient from "./Gradient.astro";
             alt={speaker.name}
           />
           <a href={speaker.link}>
-            <div class="text" data-cursor="text" data-cursor-text="View event">
+            <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <Button
+                data-cursor="fill"
+                class="button"
+                text="View event"
+                button_class="primary"
+              />
             </div>
           </a>
         </li>
@@ -123,9 +142,15 @@ import Gradient from "./Gradient.astro";
             alt={speaker.name}
           />
           <a href={speaker.link}>
-            <div class="text" data-cursor="text" data-cursor-text="View event">
+            <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <Button
+                data-cursor="fill"
+                class="button"
+                text="View event"
+                button_class="primary"
+              />
             </div>
           </a>
         </li>
@@ -142,9 +167,15 @@ import Gradient from "./Gradient.astro";
             alt={speaker.name}
           />
           <a href={speaker.link}>
-            <div class="text" data-cursor="text" data-cursor-text="View event">
+            <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <Button
+                data-cursor="fill"
+                class="button"
+                text="View event"
+                button_class="primary"
+              />
             </div>
           </a>
         </li>
@@ -160,9 +191,15 @@ import Gradient from "./Gradient.astro";
             alt={speaker.name}
           />
           <a href={speaker.link}>
-            <div class="text" data-cursor="text" data-cursor-text="View event">
+            <div class="text" data-cursor="fill">
               <p class="name">{speaker.name}</p>
               <p class="about">{speaker.about}</p>
+              <Button
+                data-cursor="fill"
+                class="button"
+                text="View event"
+                button_class="primary"
+              />
             </div>
           </a>
         </li>
@@ -254,7 +291,7 @@ import Gradient from "./Gradient.astro";
     }
     .text {
       position: absolute;
-      top: 3%;
+      top: -5%;
       left: 50%;
       display: none;
     }
