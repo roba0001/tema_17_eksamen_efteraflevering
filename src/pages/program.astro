@@ -52,43 +52,46 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
     <Gradient gradient_class="program" />
     <Gradient gradient_class="program2" />
     <div class="flex">
-      <div class="dropdown_filtrering">
-        <Dropdown selectName="eventTopic" selectId="eventTopicSelector">
-          <option value="allTopics">All Topics</option>
+      <div class="filter_and_amount">
+        <div class="dropdown_filtrering">
+          <Dropdown selectName="eventTopic" selectId="eventTopicSelector">
+            <option value="allTopics">All Topics</option>
 
-          {
-            uniqueEventTopics.map((eventTopic) => {
-              return <option value={eventTopic}>{eventTopic}</option>;
-            })
-          }
-        </Dropdown>
+            {
+              uniqueEventTopics.map((eventTopic) => {
+                return <option value={eventTopic}>{eventTopic}</option>;
+              })
+            }
+          </Dropdown>
 
-        <Dropdown selectName="eventType" selectId="eventTypeSelector">
-          <option value="allEventTypes">All Event Types</option>
+          <Dropdown selectName="eventType" selectId="eventTypeSelector">
+            <option value="allEventTypes">All Event Types</option>
 
-          {
-            uniqueEventTypes.map((eventType) => {
-              return <option value={eventType}>{eventType}</option>;
-            })
-          }
-        </Dropdown>
+            {
+              uniqueEventTypes.map((eventType) => {
+                return <option value={eventType}>{eventType}</option>;
+              })
+            }
+          </Dropdown>
 
-        <Dropdown selectName="eventVenue" selectId="eventVenueSelector">
-          <option value="allVenues">All Venues</option>
-          {
-            uniqueEventVenues.map((eventVenue) => {
-              return <option value={eventVenue}>{eventVenue}</option>;
-            })
-          }
-        </Dropdown>
+          <Dropdown selectName="eventVenue" selectId="eventVenueSelector">
+            <option value="allVenues">All Venues</option>
+            {
+              uniqueEventVenues.map((eventVenue) => {
+                return <option value={eventVenue}>{eventVenue}</option>;
+              })
+            }
+          </Dropdown>
 
-        <img
-          data-cursor="text"
-          data-cursor-text="Reset Filters"
-          class="reset_symbol"
-          src="/imgs/Program/reset.svg"
-          alt="Reset button"
-        />
+          <img
+            data-cursor="text"
+            data-cursor-text="Reset Filters"
+            class="reset_symbol"
+            src="/imgs/Program/reset.svg"
+            alt="Reset button"
+          />
+        </div>
+        <p id="eventsCount"></p>
       </div>
 
       <div class="searchbar_wrapper">
@@ -243,6 +246,7 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
     }
     .searchbar_wrapper {
       order: 1;
+      align-self: flex-start;
     }
 
     select {
@@ -253,6 +257,16 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
       display: flex;
       flex-direction: row;
       gap: 2rem;
+    }
+
+    .filter_and_amount {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      #eventsCount {
+        margin: 0;
+      }
     }
   }
 
@@ -292,6 +306,8 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
     const selectedType = eventTypeSelector.value;
     const selectedVenue = eventVenueSelector.value;
 
+    let totalVisibleEvents = 0; // <-- initialize counter
+
     cards.forEach((card) => {
       const title = card.dataset.title.toLowerCase();
       const cardTopics = card.dataset.topic?.split(",") || [];
@@ -303,10 +319,21 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
       const matchesType = selectedType === "allEventTypes" || cardTypes.includes(selectedType);
       const matchesVenue = selectedVenue === "allVenues" || cardVenues.includes(selectedVenue);
 
-      card.style.display =
-        matchesSearch && matchesTopic && matchesType && matchesVenue ? "block" : "none";
+      const isVisible = matchesSearch && matchesTopic && matchesType && matchesVenue;
+      card.style.display = isVisible ? "block" : "none";
+
+      if (isVisible) totalVisibleEvents++; // <-- increment counter if visible
     });
 
+    // Update your UI with the count
+    const eventsCountEl = document.getElementById("eventsCount");
+    if (eventsCountEl) {
+      eventsCountEl.textContent = `${totalVisibleEvents} available event${totalVisibleEvents !== 1 ? "s" : ""}`;
+    }
+
+    console.log("totalVisibleEvents", totalVisibleEvents);
+
+    // The rest of your row visibility logic...
     document.querySelectorAll(".program_row_wrapper").forEach((wrapper) => {
       const cards = wrapper.querySelectorAll(".program_card");
       const visibleCards = Array.from(cards).filter((card) => card.style.display !== "none");
@@ -344,4 +371,6 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
 
     applyFilters(); // Reapply filters after reset
   }
+
+  applyFilters();
 </script>
