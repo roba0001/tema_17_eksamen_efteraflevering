@@ -65,8 +65,8 @@ const data = await fetch(
       alt="arrow_scroll_down"
     />
   </div>
-  <Gradient gradient_class="about" />
-
+  <Gradient gradient_class="index" />
+  <Gradient gradient_class="index2" />
   <div class="second_section">
     <h2>Design with Purpose. Create with Impact.</h2>
     <div class="section_flex">
@@ -126,25 +126,24 @@ const data = await fetch(
   /* USYNLIGE ROTERENDE LINKS STYLING*/
   .usynlig_link {
     position: absolute;
-    height: 59%;
-    width: 22.2%;
+    height: 52%;
+    width: 70%;
     z-index: 10;
   }
   #rotator1 {
-    top: 17%;
-    left: 0px;
+    display: none;
   }
   #rotator2 {
-    top: 17%;
-    left: 22.2%;
+    top: 20%;
+    left: 0%;
+    width: 31%;
   }
   #rotator3 {
-    top: 17%;
-    left: 44.2%;
+    top: 20%;
+    left: 28.8%;
   }
   #rotator4 {
-    top: 17%;
-    left: 66.5%;
+    display: none;
   }
   /* USYNLIGE ROTERENDE LINKS STYLING*/
   video {
@@ -206,6 +205,32 @@ const data = await fetch(
     }
   }
   @media (min-width: 800px) {
+    /* USYNLIGE ROTERENDE LINKS STYLING*/
+    .usynlig_link {
+      position: absolute;
+      height: 59%;
+      width: 22.2%;
+      z-index: 10;
+    }
+    #rotator1 {
+      top: 17%;
+      left: 0px;
+      display: block;
+    }
+    #rotator2 {
+      top: 17%;
+      left: 22.2%;
+    }
+    #rotator3 {
+      top: 17%;
+      left: 44.2%;
+    }
+    #rotator4 {
+      top: 17%;
+      left: 66.5%;
+      display: block;
+    }
+    /* USYNLIGE ROTERENDE LINKS STYLING*/
     .title {
       width: 23%;
       bottom: 20px;
