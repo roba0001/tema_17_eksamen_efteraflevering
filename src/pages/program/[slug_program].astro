@@ -179,8 +179,7 @@ const { myData } = Astro.props;
   /* Layout og styling af funktionalitet */
   .images_container {
     width: 100%;
-    min-height: 415px;
-    max-height: 415px;
+    min-height: 525px;
     position: relative;
     overflow: hidden;
     margin-top: 40px;
@@ -364,7 +363,7 @@ const { myData } = Astro.props;
   }
   @media (min-width: 800px) {
     .images_container {
-      height: 400px;
+      min-height: 500px;
     }
     .resize-handle {
       width: 50px;
@@ -375,29 +374,29 @@ const { myData } = Astro.props;
     .image_1 {
       top: 12%;
       left: 40%;
-      height: 350px;
-      width: 270px;
+      height: 400px;
+      width: 300px;
     }
 
     .image_2 {
       top: 32%;
       left: 2%;
-      height: 221px;
-      width: 230px;
+      height: 271px;
+      width: 380px;
     }
 
     .image_3 {
       top: 9%;
       left: 80%;
-      height: 300px;
-      width: 230px;
+      height: 360px;
+      width: 250px;
     }
     .image_4 {
       top: 24%;
       left: 54%;
-      height: 200px;
+      height: 300px;
       width: auto;
-      min-width: 220px;
+      min-width: 290px;
       max-width: 400px;
     }
     .image_5 {
