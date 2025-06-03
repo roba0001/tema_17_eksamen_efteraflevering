@@ -14,7 +14,11 @@ const { gradient_class } = Astro.props;
     flex-shrink: 0;
     border-radius: 1263px;
     z-index: -1;
-    background: radial-gradient(50.06% 50% at 50.06% 50%, var(--green) 0%, var(--off_white) 100%);
+    background: radial-gradient(
+      50.06% 50% at 50.06% 50%,
+      var(--green) 0%,
+      var(--off_white) 100%
+    );
   }
   .practical1 {
     width: 800px;
@@ -114,6 +118,17 @@ const { gradient_class } = Astro.props;
     z-index: -1;
     position: fixed;
     overflow: hidden;
+  }
+  .index {
+    display: none;
+  }
+  .index2 {
+    width: 850px;
+    height: 900px;
+    top: 990px;
+    left: -520px;
+    z-index: -1;
+    position: absolute;
   }
   @media (min-width: 800px) {
     .program_sw {
@@ -217,6 +232,31 @@ const { gradient_class } = Astro.props;
       z-index: -1;
       position: fixed;
       overflow: hidden;
+    }
+    .index {
+      width: 850px;
+      height: 800px;
+      top: 520px;
+      left: 900px;
+      z-index: -1;
+      position: absolute;
+      display: block;
+    }
+    .index2 {
+      width: 850px;
+      height: 900px;
+      top: 990px;
+      left: -300px;
+      z-index: -1;
+      position: absolute;
+    }
+    .index3 {
+      width: 850px;
+      height: 900px;
+      top: 285%;
+      left: 21%;
+      z-index: -1;
+      position: absolute;
     }
   }
 </style>

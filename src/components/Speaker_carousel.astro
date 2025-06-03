@@ -9,47 +9,199 @@ const speakers = [
   { name: "Sam Taylor", image: "/sam_taylor.webp" },
   { name: "Takumi Hara", image: "/takumi_hara.webp" },
 ];
+import Gradient from "./Gradient.astro";
 ---
 
+<Gradient gradient_class="index3" />
 <div class="carousel-container">
   <ul id="carousel" class="carousel">
-    <li class="carousel-item">
-      <img src="/imgs/speakers/caroussel/arjun_malik.webp" alt="Arjun Malik" /><p>Arjun Malik</p>
-    </li>
-    <li class="carousel-item">
-      <img src="/imgs/speakers/caroussel/elena_motta.webp" alt="Elena Motta" /><p>Elena Motta</p>
-    </li>
-    <li class="carousel-item">
-      <img src="/imgs/speakers/caroussel/jules_renner.webp" alt="Jules Renner" /><p>Jules Renner</p>
-    </li>
-    <li class="carousel-item">
-      <img src="/imgs/speakers/caroussel/lena_alvarez.webp" alt="Lena Alvarez" /><p>Lena Alvarez</p>
-    </li>
-    <li class="carousel-item">
-      <img src="/imgs/speakers/caroussel/nico_delgado.webp" alt="Nico Delgado" /><p>Nico Delgado</p>
-    </li>
-    <li class="carousel-item">
-      <img src="/imgs/speakers/caroussel/sam_taylor.webp" alt="Sam Taylor" /><p>Sam Taylor</p>
-    </li>
-    <li class="carousel-item">
-      <img src="/imgs/speakers/caroussel/takumi_hara.webp" alt="Takumi Hara" /><p>Takumi Hara</p>
-    </li>
-  </ul>
+    <!-- Cloned end items at start -->
+    {
+      speakers.slice(-3).map((speaker) => (
+        <li class="carousel-item" key={`clone-start-${speaker.name}`}>
+          <img
+            data-cursor="fill"
+            src={`/imgs/speakers/caroussel/${speaker.image}`}
+            alt={speaker.name}
+          />
+          <p>{speaker.name}</p>
+        </li>
+      ))
+    }
+    <!-- Cloned end items at start -->
+    {
+      speakers.slice(-3).map((speaker) => (
+        <li class="carousel-item" key={`clone-start-${speaker.name}`}>
+          <img
+            data-cursor="fill"
+            src={`/imgs/speakers/caroussel/${speaker.image}`}
+            alt={speaker.name}
+          />
+          <p>{speaker.name}</p>
+        </li>
+      ))
+    }
 
-  <div class="arrows">
-    <button id="prevBtn" class="arrow left">‹</button>
-    <button id="nextBtn" class="arrow right">›</button>
-  </div>
+    <!-- Real items -->
+    {
+      speakers.map((speaker) => (
+        <li class="carousel-item" key={speaker.name}>
+          <img
+            data-cursor="fill"
+            src={`/imgs/speakers/caroussel/${speaker.image}`}
+            alt={speaker.name}
+          />
+          <p>{speaker.name}</p>
+        </li>
+      ))
+    }
+    <!-- Real items -->
+    {
+      speakers.map((speaker) => (
+        <li class="carousel-item" key={speaker.name}>
+          <img
+            data-cursor="fill"
+            src={`/imgs/speakers/caroussel/${speaker.image}`}
+            alt={speaker.name}
+          />
+          <p>{speaker.name}</p>
+        </li>
+      ))
+    }
+
+    <!-- Cloned start items at end -->
+    {
+      speakers.slice(0, 3).map((speaker) => (
+        <li class="carousel-item" key={`clone-end-${speaker.name}`}>
+          <img
+            data-cursor="fill"
+            src={`/imgs/speakers/caroussel/${speaker.image}`}
+            alt={speaker.name}
+          />
+          <p>{speaker.name}</p>
+        </li>
+      ))
+    }
+    <!-- Cloned start items at end -->
+    {
+      speakers.slice(0, 3).map((speaker) => (
+        <li class="carousel-item" key={`clone-end-${speaker.name}`}>
+          <img
+            data-cursor="fill"
+            src={`/imgs/speakers/caroussel/${speaker.image}`}
+            alt={speaker.name}
+          />
+          <p>{speaker.name}</p>
+        </li>
+      ))
+    }
+  </ul>
 </div>
 
 <style>
   .carousel-container {
-    margin: 10rem 0;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
   }
+
+  .carousel {
+    display: flex;
+    gap: 2rem;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    padding: 0 10vw; /* so items peek on sides */
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-item {
+    flex: 0 0 calc(80vw / 3); /* 3 items visible in 80% of screen */
+    scroll-snap-align: center;
+    text-align: center;
+    transition:
+      height 0.3s ease,
+      transform 0.3s ease;
+  }
+
   .carousel-item img {
     height: 400px;
     width: auto;
     object-fit: cover;
     display: block;
+    margin: 0 auto;
+    transition: height 0.3s ease;
+    opacity: 0.5;
+  }
+
+  .carousel-item p {
+    margin-top: 0.5rem;
+  }
+
+  /* Highlight the center item */
+  .carousel-item.active img {
+    height: 500px;
+    opacity: 1;
+    transition: 0.5s;
+  }
+  .carousel-item.active:hover img {
+    scale: 1.02;
   }
 </style>
+<script>
+  const carousel = document.getElementById("carousel");
+  const items = carousel.querySelectorAll(".carousel-item");
+  const realItemCount = items.length / 3; // total = clonesStart + real + clonesEnd
+  const itemWidth = items[0].offsetWidth + 32; // 32 = ~2rem gap
+
+  carousel.scrollLeft = realItemCount * itemWidth;
+
+  function updateActiveItem() {
+    const center = carousel.scrollLeft + carousel.offsetWidth / 2;
+
+    items.forEach((item) => {
+      const box = item.getBoundingClientRect();
+      const itemCenter = box.left + box.width / 2;
+      item.classList.toggle(
+        "active",
+        Math.abs(itemCenter - window.innerWidth / 2) < box.width / 2
+      );
+    });
+  }
+
+  function handleLoop() {
+    updateActiveItem();
+  }
+
+  carousel.addEventListener("scroll", handleLoop);
+
+  window.addEventListener("resize", () => {
+    carousel.scrollLeft = realItemCount * itemWidth;
+  });
+
+  items.forEach((item) => {
+    const img = item.querySelector("img");
+    img.style.cursor = "pointer";
+
+    img.addEventListener("click", () => {
+      const itemLeft = item.offsetLeft;
+      const itemCenter = itemLeft + item.offsetWidth / 2;
+      const targetScrollLeft = itemCenter - carousel.offsetWidth / 2;
+
+      carousel.scrollTo({
+        left: targetScrollLeft,
+        behavior: "smooth",
+      });
+    });
+  });
+
+  updateActiveItem();
+</script>

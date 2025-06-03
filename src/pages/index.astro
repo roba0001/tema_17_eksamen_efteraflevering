@@ -4,48 +4,93 @@ import Gradient from "../components/Gradient.astro";
 import "../style/styles.css";
 import TopicsHome from "../components/Topics_home.astro";
 import Button from "../components/Button.astro";
-import Carrusel from "../components/Carrusel.astro";
+import SpeakerCarousel from "../components/Speaker_carousel.astro";
 import Searchbar from "../components/Searchbar.astro";
+const data = await fetch(
+  "https://hdwrzbktzyoytozzhhrw.supabase.co/rest/v1/events",
+  {
+    method: "GET",
+    headers: {
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3J6Ymt0enlveXRvenpoaHJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDIxMzYsImV4cCI6MjA2MjM3ODEzNn0.3w77RtPOv0ngqCNY7WUomweHq-aqoPC2LlEKmQBj1H0",
+    },
+  }
+).then((res) => res.json());
 ---
 
 <Skelet title="Home">
-  <div id="scrollDiv" data-cursor="text" data-cursor-text="Scroll Down" class="hero_section">
-    <video autoplay muted loop playsinline>
-      <source src="/imgs/poster_motion_web.mp4" type="video/mp4" />
-    </video>
-    <img class="title" src="/imgs/title.svg" alt="visual impact festival" />
+  <a
+    id="link1"
+    href="/program/responsive_web_design_best_practices"
+    data-cursor="text"
+    data-cursor-text="View Event"
+  >
+    <div class="usynlig_link" id="rotator1"></div>
+  </a>
+
+  <a
+    id="link2"
+    href="/program/designing_brands_in_a_noisy_world"
+    data-cursor="text"
+    data-cursor-text="View Event"
+  >
+    <div class="usynlig_link" id="rotator2"></div>
+  </a>
+
+  <a
+    id="link3"
+    href="/program/3d-objects-in-motion"
+    data-cursor="text"
+    data-cursor-text="View Event"
+  >
+    <div class="usynlig_link" id="rotator3"></div>
+  </a>
+  <a
+    id="link4"
+    href="/program/mastering_video_production_with_a_limited_budget"
+    data-cursor="text"
+    data-cursor-text="View Event"
+  >
+    <div class="usynlig_link" id="rotator4"></div>
+  </a>
+  <video autoplay muted loop playsinline>
+    <source src="/imgs/poster_motion_web.mp4" type="video/mp4" />
+  </video>
+  <img class="title" src="/imgs/title.svg" alt="visual impact festival" />
+  <div id="scrollDiv" class="hero_section" data-cursor="fill">
     <img
-      data-cursor="fill"
       id="scrollArrow"
       class="arrow"
       src="/imgs/green_arrow.svg"
       alt="arrow_scroll_down"
     />
   </div>
-  <Gradient gradient_class="about" />
-
+  <Gradient gradient_class="index" />
+  <Gradient gradient_class="index2" />
   <div class="second_section">
     <h2>Design with Purpose. Create with Impact.</h2>
     <div class="section_flex">
       <div class="left_side">
         <p>
-          Join us in Copenhagen, one of the world’s most exciting cities for design and innovation,
-          from September 4th to 7th for four days filled with talks, workshops, exhibitions, and
-          networking.
+          Join us in Copenhagen, one of the world’s most exciting cities for
+          design and innovation, from September 4th to 7th for four days filled
+          with talks, workshops, exhibitions, and networking.
         </p>
         <p>
-          Set in a city where creativity is part of the culture, the festival brings together voices
-          from across the globe to explore the latest in video production, motion graphics,
-          marketing, branding, AI design, animation, web design, and more. Whether you’re a
-          designer, technologist, strategist, or student, you’ll find fresh ideas, practical
-          insights, and new tools to inspire your work.
+          Set in a city where creativity is part of the culture, the festival
+          brings together voices from across the globe to explore the latest in
+          video production, motion graphics, marketing, branding, AI design,
+          animation, web design, and more. Whether you’re a designer,
+          technologist, strategist, or student, you’ll find fresh ideas,
+          practical insights, and new tools to inspire your work.
         </p>
         <p class="last">
-          This is more than an event — it’s a chance to connect with a creative community in a place
-          where design thinking shapes everything from architecture to everyday life. Discover
-          what’s next in digital creativity, right in the heart of Copenhagen.
+          This is more than an event — it’s a chance to connect with a creative
+          community in a place where design thinking shapes everything from
+          architecture to everyday life. Discover what’s next in digital
+          creativity, right in the heart of Copenhagen.
         </p>
-        <a data-cursor="fill" href="/program.html">
+        <a data-cursor="fill" href="/program">
           <Button
             data-cursor="fill"
             class="button"
@@ -56,20 +101,50 @@ import Searchbar from "../components/Searchbar.astro";
       </div>
 
       <div class="right_side">
-        <img class="image1" src="/imgs/frontpage_1.webp" alt="festival images" />
-        <img class="image2" src="/imgs/frontpage_2.webp" alt="festival images" />
+        <img
+          class="image1"
+          src="/imgs/frontpage_1.webp"
+          alt="festival images"
+        />
+        <img
+          class="image2"
+          src="/imgs/frontpage_2.webp"
+          alt="festival images"
+        />
         <Gradient gradient_class="home1" />
         <Gradient gradient_class="home2" />
       </div>
     </div>
   </div>
   <TopicsHome />
-
-  <!-- <Carrusel />
-  <Searchbar /> -->
+  <SpeakerCarousel />
+  <!-- <Searchbar /> -->
 </Skelet>
 
 <style>
+  /* USYNLIGE ROTERENDE LINKS STYLING*/
+  .usynlig_link {
+    position: absolute;
+    height: 52%;
+    width: 70%;
+    z-index: 10;
+  }
+  #rotator1 {
+    display: none;
+  }
+  #rotator2 {
+    top: 20%;
+    left: 0%;
+    width: 31%;
+  }
+  #rotator3 {
+    top: 20%;
+    left: 28.8%;
+  }
+  #rotator4 {
+    display: none;
+  }
+  /* USYNLIGE ROTERENDE LINKS STYLING*/
   video {
     width: 100%;
     height: 100vh;
@@ -129,6 +204,32 @@ import Searchbar from "../components/Searchbar.astro";
     }
   }
   @media (min-width: 800px) {
+    /* USYNLIGE ROTERENDE LINKS STYLING*/
+    .usynlig_link {
+      position: absolute;
+      height: 59%;
+      width: 22.2%;
+      z-index: 10;
+    }
+    #rotator1 {
+      top: 17%;
+      left: 0px;
+      display: block;
+    }
+    #rotator2 {
+      top: 17%;
+      left: 22.2%;
+    }
+    #rotator3 {
+      top: 17%;
+      left: 44.2%;
+    }
+    #rotator4 {
+      top: 17%;
+      left: 66.5%;
+      display: block;
+    }
+    /* USYNLIGE ROTERENDE LINKS STYLING*/
     .title {
       width: 23%;
       bottom: 20px;
@@ -194,4 +295,59 @@ import Searchbar from "../components/Searchbar.astro";
       behavior: "smooth",
     });
   };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Define separate URL lists for each rotator
+    const urls1 = [
+      "/program/responsive_web_design_best_practices",
+      "/program/sustainable_motion_visualising_a_greener_future",
+      "/program/beyond_engagement_marketing_with_a_purpose",
+      "/program/responsive_web_design_best_practices",
+      "/program/ai-driven_character_design",
+    ];
+
+    const urls2 = [
+      "/program/designing_brands_in_a_noisy_world",
+      "/program/leveraging_social_media_for_digital_marketing_succes",
+      "/program/branding_beyond_borders",
+      "/program/digital_storytelling_in_the_age_of_short_attention_spans",
+      "/program/ai_tools_for_creatives",
+    ];
+
+    const urls3 = [
+      "/program/3d-objects-in-motion",
+      "/program/3d_modelling_for_product_imagery",
+      "/program/branding_evolution",
+      "/program/3d-objects-in-motion",
+      "/program/typography_colors_&_spacing_making_your_ui_shine",
+    ];
+
+    const urls4 = [
+      "/program/mastering_video_production_with_a_limited_budget",
+      "/program/how_creators_are_changing_the_rules_of_engagement",
+      "/program/the_future_of_animation_in_advertising_and_media",
+      "/program/how_creators_are_changing_the_rules_of_engagement",
+      "/program/the_ethical_algorithm",
+    ];
+
+    const ROTATE_INTERVAL = 6400;
+
+    // Reusable function
+    function roterLinks(linkElementId, urlsArray, intervalMs) {
+      let idx = 0;
+      const anchor = document.getElementById(linkElementId);
+      if (!anchor) return;
+
+      setInterval(() => {
+        idx = (idx + 1) % urlsArray.length;
+        anchor.setAttribute("href", urlsArray[idx]);
+      }, intervalMs);
+    }
+
+    // Call the function for each unique rotator
+    roterLinks("link1", urls1, ROTATE_INTERVAL);
+    roterLinks("link2", urls2, ROTATE_INTERVAL);
+    roterLinks("link3", urls3, ROTATE_INTERVAL);
+    roterLinks("link4", urls4, ROTATE_INTERVAL);
+  });
 </script>
