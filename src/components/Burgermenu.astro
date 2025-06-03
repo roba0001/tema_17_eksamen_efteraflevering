@@ -1,21 +1,20 @@
 ---
-import CursorToggle from "./Cursor_Toggle.astro";
+import CursorRadioButtons from "./Cursor_RadioButtons.astro";
 const { pathname } = Astro.url;
 ---
 
 <header class="class_header">
   <nav class="menubar">
-    <div data-cursor="text" data-cursor-text="Home" class="left_row">
-      <a href="/index.html"
-        ><img
-          class="logo"
-          src="/imgs/logos/footer_logo_350.svg"
-          alt="logo"
-        /></a
-      >
+    <div class="logo_cursorBtn_wrapper">
+      <div data-cursor="text" data-cursor-text="Home" class="left_row">
+        <a href="/index.html"
+          ><img class="logo" src="/imgs/logos/footer_logo_350.svg" alt="logo" /></a
+        >
+      </div>
+      <CursorRadioButtons />
     </div>
+
     <div class="right_row">
-      <CursorToggle />
       <a
         data-cursor="fill"
         href="/news.html"
@@ -55,34 +54,14 @@ const { pathname } = Astro.url;
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/program.html" id="program">Program</a>
-        <img
-          class="program_img_1"
-          src="/imgs/burger/blue_1.webp"
-          alt="burger"
-        />
-        <img
-          class="program_img_2"
-          src="/imgs/burger/blue_2.webp"
-          alt="burger"
-        />
-        <img
-          class="program_img_3"
-          src="/imgs/burger/blue_3.webp"
-          alt="burger"
-        />
+        <img class="program_img_1" src="/imgs/burger/blue_1.webp" alt="burger" />
+        <img class="program_img_2" src="/imgs/burger/blue_2.webp" alt="burger" />
+        <img class="program_img_3" src="/imgs/burger/blue_3.webp" alt="burger" />
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/tickets.html" id="tickets">Tickets</a>
-        <img
-          class="tickets_img_1"
-          src="/imgs/burger/white_1.webp"
-          alt="burger"
-        />
-        <img
-          class="tickets_img_2"
-          src="/imgs/burger/white_2.webp"
-          alt="burger"
-        />
+        <img class="tickets_img_1" src="/imgs/burger/white_1.webp" alt="burger" />
+        <img class="tickets_img_2" src="/imgs/burger/white_2.webp" alt="burger" />
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/map.html" id="map">Map</a>
@@ -94,40 +73,28 @@ const { pathname } = Astro.url;
         <div class="mobile_img"></div>
       </div>
       <div class="burger_tab">
-        <a
-          data-cursor="fill"
-          href="/practical_information.html"
-          id="practical_information">Practical Information</a
+        <a data-cursor="fill" href="/practical_information.html" id="practical_information"
+          >Practical Information</a
         >
-        <img
-          class="practical_img_1"
-          src="/imgs/burger/green_1.webp"
-          alt="burger"
-        />
-        <img
-          class="practical_img_2"
-          src="/imgs/burger/green_2.webp"
-          alt="burger"
-        />
+        <img class="practical_img_1" src="/imgs/burger/green_1.webp" alt="burger" />
+        <img class="practical_img_2" src="/imgs/burger/green_2.webp" alt="burger" />
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/about.html" id="about">About</a>
-        <img
-          class="about_img_1"
-          src="/imgs/burger/purple_1.webp"
-          alt="burger"
-        />
-        <img
-          class="about_img_2"
-          src="/imgs/burger/purple_2.webp"
-          alt="burger"
-        />
+        <img class="about_img_1" src="/imgs/burger/purple_1.webp" alt="burger" />
+        <img class="about_img_2" src="/imgs/burger/purple_2.webp" alt="burger" />
       </div>
     </div>
   </nav>
 </header>
 <style>
   /*HEADER*/
+
+  .logo_cursorBtn_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
 
   /*STYLING AF LUKKET MENU*/
 

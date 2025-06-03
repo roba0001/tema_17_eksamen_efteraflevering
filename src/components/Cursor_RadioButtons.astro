@@ -1,0 +1,140 @@
+---
+import "../style/styles.css";
+---
+
+<div class="cursor_btns_wrapper">
+  <p class="cursor-label">Choose cursor:</p>
+  <div class="cursor-options">
+    <label>
+      <input type="radio" name="cursor-style" value="normal" id="cursor-normal" />
+      Normal
+    </label>
+    <label>
+      <input type="radio" name="cursor-style" value="styled" id="cursor-styled" />
+      Styled
+    </label>
+  </div>
+</div>
+
+<style>
+  .cursor_btns_wrapper {
+    display: flex;
+    gap: 40px;
+  }
+
+  /* custom style for radiobutton */
+  input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+
+    color: var(--black);
+    width: 1.15em;
+    height: 1.15em;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+  }
+
+  input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--green);
+  }
+
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+
+  label {
+    font-family: "Red Hat Display", sans-serif;
+  }
+  .cursor-label {
+    font-size: 1rem;
+  }
+
+  .cursor-options {
+    display: flex;
+    gap: 20px;
+    border-radius: 3.75rem;
+    color: var(--black);
+    z-index: 3999;
+  }
+
+  .cursor-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .cursor-options input[type="radio"] {
+    cursor: pointer;
+  }
+  input {
+    border-radius: 30px;
+    color: green;
+    background-color: green;
+  }
+
+  @media (max-width: 800px) {
+    .cursor-label,
+    .cursor-options {
+      display: none;
+    }
+  }
+</style>
+
+<script client:load>
+  window.addEventListener("DOMContentLoaded", () => {
+    const normalRadio = document.getElementById("cursor-normal");
+    const styledRadio = document.getElementById("cursor-styled");
+
+    function enableStyledCursor() {
+      document.body.classList.add("custom-cursor-enabled");
+      document.body.classList.remove("custom-cursor-disabled");
+      styledRadio.checked = true;
+      localStorage.setItem("customCursorEnabled", "true");
+    }
+
+    function enableNormalCursor() {
+      document.body.classList.remove("custom-cursor-enabled");
+      document.body.classList.add("custom-cursor-disabled");
+      normalRadio.checked = true;
+      localStorage.setItem("customCursorEnabled", "false");
+    }
+
+    // Initial load: get preference
+    const isEnabled = localStorage.getItem("customCursorEnabled");
+    if (isEnabled === "false") {
+      enableNormalCursor();
+    } else {
+      enableStyledCursor(); // default to styled
+    }
+
+    normalRadio.addEventListener("change", () => {
+      if (normalRadio.checked) {
+        enableNormalCursor();
+      }
+    });
+
+    styledRadio.addEventListener("change", () => {
+      if (styledRadio.checked) {
+        enableStyledCursor();
+      }
+    });
+  });
+</script>

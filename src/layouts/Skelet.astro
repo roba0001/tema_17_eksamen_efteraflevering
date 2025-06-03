@@ -3,7 +3,6 @@ import "../style/styles.css";
 import Burgermenu from "../components/Burgermenu.astro";
 const { title } = Astro.props;
 import Footer from "../components/Footer.astro";
-import CursorToggle from "../components/Cursor_Toggle.astro";
 ---
 
 <!doctype html>
@@ -96,6 +95,9 @@ import CursorToggle from "../components/Cursor_Toggle.astro";
 
       body.custom-cursor-disabled {
         cursor: default;
+        * {
+          cursor: default;
+        }
       }
 
       body.custom-cursor-disabled .inner_cursor,
