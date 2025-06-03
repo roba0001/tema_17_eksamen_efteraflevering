@@ -19,20 +19,37 @@ const data = await fetch(
 ---
 
 <Skelet title="Home">
-  <a id="link1" href="/program/responsive_web_design_best_practices">
+  <a
+    id="link1"
+    href="/program/responsive_web_design_best_practices"
+    data-cursor="text"
+    data-cursor-text="View Event"
+  >
     <div class="usynlig_link" id="rotator1"></div>
   </a>
 
-  <a id="link2" href="/program/designing_brands_in_a_noisy_world">
+  <a
+    id="link2"
+    href="/program/designing_brands_in_a_noisy_world"
+    data-cursor="text"
+    data-cursor-text="View Event"
+  >
     <div class="usynlig_link" id="rotator2"></div>
   </a>
 
-  <a id="link3" href="/program/3d-objects-in-motion">
+  <a
+    id="link3"
+    href="/program/3d-objects-in-motion"
+    data-cursor="text"
+    data-cursor-text="View Event"
+  >
     <div class="usynlig_link" id="rotator3"></div>
   </a>
   <a
     id="link4"
     href="/program/mastering_video_production_with_a_limited_budget"
+    data-cursor="text"
+    data-cursor-text="View Event"
   >
     <div class="usynlig_link" id="rotator4"></div>
   </a>
@@ -40,14 +57,8 @@ const data = await fetch(
     <source src="/imgs/poster_motion_web.mp4" type="video/mp4" />
   </video>
   <img class="title" src="/imgs/title.svg" alt="visual impact festival" />
-  <div
-    id="scrollDiv"
-    data-cursor="text"
-    data-cursor-text="Scroll Down"
-    class="hero_section"
-  >
+  <div id="scrollDiv" class="hero_section" data-cursor="fill">
     <img
-      data-cursor="fill"
       id="scrollArrow"
       class="arrow"
       src="/imgs/green_arrow.svg"
@@ -295,7 +306,7 @@ const data = await fetch(
       "/program/the_ethical_algorithm",
     ];
 
-    const ROTATE_INTERVAL = 6000; // 5 links in 30 seconds (6000ms per link)
+    const ROTATE_INTERVAL = 6400;
 
     // Reusable function
     function roterLinks(linkElementId, urlsArray, intervalMs) {
