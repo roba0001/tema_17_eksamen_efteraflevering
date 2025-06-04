@@ -299,6 +299,9 @@ import Gradient from "./Gradient.astro";
     scale: 1.02;
   }
   @media (max-width: 800px) {
+    .carousel-container {
+      height: 100vh;
+    }
     h3 {
       margin-left: 20px;
       margin-top: 40px;
@@ -314,6 +317,12 @@ import Gradient from "./Gradient.astro";
     }
     .carousel-item.active .text {
       max-width: 300px;
+    }
+    .carousel-item.active img {
+      height: 330px;
+    }
+    .carousel-item img {
+      height: 200px;
     }
   }
 </style>
