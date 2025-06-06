@@ -8,7 +8,11 @@ const { pathname } = Astro.url;
     <div class="logo_cursorBtn_wrapper">
       <div data-cursor="text" data-cursor-text="Home" class="left_row">
         <a href="/index.html"
-          ><img class="logo" src="/imgs/logos/footer_logo_350.svg" alt="logo" /></a
+          ><img
+            class="logo"
+            src="/imgs/logos/footer_logo_350.svg"
+            alt="logo"
+          /></a
         >
       </div>
       <CursorRadioButtons />
@@ -54,14 +58,34 @@ const { pathname } = Astro.url;
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/program.html" id="program">Program</a>
-        <img class="program_img_1" src="/imgs/burger/blue_1.webp" alt="burger" />
-        <img class="program_img_2" src="/imgs/burger/blue_2.webp" alt="burger" />
-        <img class="program_img_3" src="/imgs/burger/blue_3.webp" alt="burger" />
+        <img
+          class="program_img_1"
+          src="/imgs/burger/blue_1.webp"
+          alt="burger"
+        />
+        <img
+          class="program_img_2"
+          src="/imgs/burger/blue_2.webp"
+          alt="burger"
+        />
+        <img
+          class="program_img_3"
+          src="/imgs/burger/blue_3.webp"
+          alt="burger"
+        />
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/tickets.html" id="tickets">Tickets</a>
-        <img class="tickets_img_1" src="/imgs/burger/white_1.webp" alt="burger" />
-        <img class="tickets_img_2" src="/imgs/burger/white_2.webp" alt="burger" />
+        <img
+          class="tickets_img_1"
+          src="/imgs/burger/white_1.webp"
+          alt="burger"
+        />
+        <img
+          class="tickets_img_2"
+          src="/imgs/burger/white_2.webp"
+          alt="burger"
+        />
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/map.html" id="map">Map</a>
@@ -73,16 +97,34 @@ const { pathname } = Astro.url;
         <div class="mobile_img"></div>
       </div>
       <div class="burger_tab">
-        <a data-cursor="fill" href="/practical_information.html" id="practical_information"
-          >Practical Information</a
+        <a
+          data-cursor="fill"
+          href="/practical_information.html"
+          id="practical_information">Practical Information</a
         >
-        <img class="practical_img_1" src="/imgs/burger/green_1.webp" alt="burger" />
-        <img class="practical_img_2" src="/imgs/burger/green_2.webp" alt="burger" />
+        <img
+          class="practical_img_1"
+          src="/imgs/burger/green_1.webp"
+          alt="burger"
+        />
+        <img
+          class="practical_img_2"
+          src="/imgs/burger/green_2.webp"
+          alt="burger"
+        />
       </div>
       <div class="burger_tab">
         <a data-cursor="fill" href="/about.html" id="about">About</a>
-        <img class="about_img_1" src="/imgs/burger/purple_1.webp" alt="burger" />
-        <img class="about_img_2" src="/imgs/burger/purple_2.webp" alt="burger" />
+        <img
+          class="about_img_1"
+          src="/imgs/burger/purple_1.webp"
+          alt="burger"
+        />
+        <img
+          class="about_img_2"
+          src="/imgs/burger/purple_2.webp"
+          alt="burger"
+        />
       </div>
     </div>
   </nav>
@@ -410,9 +452,10 @@ const { pathname } = Astro.url;
   // Constants
   const icon = document.querySelector(".menu_ikon");
   const header = document.querySelector("header");
-  const burger = document.querySelector(".burger"); // fixed: should be ".burger" if it's a class
+  const burger = document.querySelector(".burger");
   const imageHolder = document.querySelector(".mobile_img");
 
+  // Array med billede url til mobile
   const imageUrls = [
     "/imgs/burger/white_1.webp",
     "/imgs/burger/orange_3.webp",
@@ -421,7 +464,9 @@ const { pathname } = Astro.url;
     "/imgs/burger/red_2.webp",
   ];
 
+  // lad current index starte ved første url i arrayet
   let currentIndex = 0;
+  // lad intervalId være null
   let intervalId = null;
 
   // Event listener
@@ -433,18 +478,20 @@ const { pathname } = Astro.url;
     header.classList.toggle("change");
     burger.classList.toggle("change");
 
+    // Constant isOpen er når burger contains classen change
     const isOpen = burger.classList.contains("change");
 
+    //Tjekker om menuen er åben og om der ikke allerede er startet et interval
     if (isOpen && !intervalId) {
-      // Start rotating images
+      // Start roterende urls
       intervalId = setInterval(() => {
-        currentIndex = (currentIndex + 1) % imageUrls.length;
-        imageHolder.style.backgroundImage = `url('${imageUrls[currentIndex]}')`;
-      }, 1000); // every 1 second
+        currentIndex = (currentIndex + 1) % imageUrls.length; //Øger currentIndex med 1, og sikrer med modulo (%) at den går tilbage til 0, når den når slutningen af imageUrls-arrayet (loop).
+        imageHolder.style.backgroundImage = `url('${imageUrls[currentIndex]}')`; // ændre background image til den url currentindex er
+      }, 1000); // hvert 1 sekund
     } else if (!isOpen && intervalId) {
-      // Stop rotating if menu is closed
-      clearInterval(intervalId);
-      intervalId = null;
+      // Stop rotation hvis burgermenuen er lukket
+      clearInterval(intervalId); //Stopper intervallet med clearInterval.
+      intervalId = null; //nulstiller intervallet så det er klar til at starte igen
     }
   }
 </script>
