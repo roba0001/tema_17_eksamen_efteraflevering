@@ -287,34 +287,60 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
 </style>
 
 <script type="module">
+  // const for searchbar
   const input = document.getElementById("searchInput");
+
+  // const for topic, event type og venue selector
   const eventTopicSelector = document.getElementById("eventTopicSelector");
   const eventTypeSelector = document.getElementById("eventTypeSelector");
   const eventVenueSelector = document.getElementById("eventVenueSelector");
-  const resetBtn = document.querySelector(".reset_symbol"); // FIXED
+
+  // const for resetknap
+  const resetBtn = document.querySelector(".reset_symbol");
+
+  // const for alle event cards
   const cards = document.querySelectorAll(".program_card");
 
+  // eventListener på søgefelt og alle dropdowns der på change kører funktionen applyFilters
   input.addEventListener("input", applyFilters);
   eventTopicSelector.addEventListener("change", applyFilters);
   eventTypeSelector.addEventListener("change", applyFilters);
   eventVenueSelector.addEventListener("change", applyFilters);
-  resetBtn.addEventListener("click", resetFilters); // NEW
 
+  // eventListener på reset knap der på click kører funktionen resetFilters
+  resetBtn.addEventListener("click", resetFilters);
+
+  // funktionen applyFilters
   function applyFilters() {
+    // variabel for searchbars indhold gjort om til lowercase
     const query = input.value.toLowerCase();
+
+    // variabler for det valgte topics, event type og venue
     const selectedTopic = eventTopicSelector.value;
     const selectedType = eventTypeSelector.value;
     const selectedVenue = eventVenueSelector.value;
 
-    let totalVisibleEvents = 0; // <-- initialize counter
+    // definer changing variabel for antal available events og sæt til at være 0
+    let totalVisibleEvents = 0;
 
+    // for hvert kort i cards
     cards.forEach((card) => {
+      // def variabel for titel baseret på kortets data-title og gør til lowercase (så det kan søges på)
       const title = card.dataset.title.toLowerCase();
-      const cardTopics = card.dataset.topic?.split(",") || [];
-      const cardTypes = card.dataset.type?.split(",") || [];
-      const cardVenues = card.dataset.venue?.split(",") || [];
 
+      // def variabel for topics baseret på kortets data-topics og split dem ad ved komma
+      const cardTopics = card.dataset.topic.split(",");
+
+      // def variabel for event type baseret på kortets data-type
+      const cardTypes = card.dataset.type;
+
+      // def variabel for venue baseret på kortets data-venue
+      const cardVenues = card.dataset.venue;
+
+      // def variabel for titler der inkluderer søgefeltets input
       const matchesSearch = title.includes(query);
+
+      // def variabel for topics der inkluderer enten de valgte topics eller alle topics
       const matchesTopic = selectedTopic === "allTopics" || cardTopics.includes(selectedTopic);
       const matchesType = selectedType === "allEventTypes" || cardTypes.includes(selectedType);
       const matchesVenue = selectedVenue === "allVenues" || cardVenues.includes(selectedVenue);
@@ -322,16 +348,16 @@ const uniqueEventVenues = [...new Set(allEventVenues)];
       const isVisible = matchesSearch && matchesTopic && matchesType && matchesVenue;
       card.style.display = isVisible ? "block" : "none";
 
-      if (isVisible) totalVisibleEvents++; // <-- increment counter if visible
+      // +1 hvis isVisible
+      if (isVisible) totalVisibleEvents++;
     });
 
     // Update your UI with the count
+
     const eventsCountEl = document.getElementById("eventsCount");
     if (eventsCountEl) {
       eventsCountEl.textContent = `${totalVisibleEvents} available event${totalVisibleEvents !== 1 ? "s" : ""}`;
     }
-
-    console.log("totalVisibleEvents", totalVisibleEvents);
 
     // The rest of your row visibility logic...
     document.querySelectorAll(".program_row_wrapper").forEach((wrapper) => {
